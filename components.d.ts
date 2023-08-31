@@ -18,6 +18,7 @@ declare module 'vue' {
     GeneratorBySVG: typeof import('./src/components/GeneratorBySVG.vue')['default']
     Header: typeof import('./src/components/layout/Header.vue')['default']
     HighlightCode: typeof import('./src/components/ui/HighlightCode.vue')['default']
+    MainMap: typeof import('./src/components/layout/MainMap.vue')['default']
     MapboxMap: typeof import('./src/components/MapboxMap.vue')['default']
     Modal: typeof import('./src/components/ui/Modal.vue')['default']
     Options: typeof import('./src/components/layout/Options.vue')['default']

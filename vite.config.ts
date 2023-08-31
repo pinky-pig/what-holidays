@@ -25,7 +25,7 @@ export default defineConfig({
         vue: Vue({
           template: {
             compilerOptions: {
-              isCustomElement: tag => ['random-bg'].includes(tag),
+              isCustomElement: tag => ['random-bg'].includes(tag) || tag.includes('lit-'),
             },
           },
           script: {

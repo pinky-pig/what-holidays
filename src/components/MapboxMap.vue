@@ -29,7 +29,7 @@ function initMapbox(option: any) {
     ...option,
     style: MapboxSetting.mapDarkStyle,
     center: [118.888175, 32.048268],
-    zoom: 4,
+    zoom: 6,
     accessToken: MapboxSetting.token,
   })
   emit('onload', map)
@@ -37,5 +37,5 @@ function initMapbox(option: any) {
 </script>
 
 <template>
-  <div ref="mapContainer" style="width: 100%; height: 100%;pointer-events: none;" />
+  <div ref="mapContainer" class="h-full w-full" />
 </template>
