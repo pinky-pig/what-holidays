@@ -8,13 +8,10 @@ function setShow(flag: boolean) {
 }
 
 watch(isShow, (value) => {
-  if (value) {
-    // 显示
-    $container.value!.style.transform = 'translateX(0px)'
-  }
-  else {
+  if (value)
+    $container.value!.style.transform = 'translateX(-20px)'
+  else
     $container.value!.style.transform = 'translateX(1000px)'
-  }
 })
 
 defineExpose({
@@ -26,13 +23,15 @@ defineExpose({
 <template>
   <div
     ref="$container"
-    class="absolute right-0 top-0 h-600px w-600px translate-x-full bg-gray-300 container"
+    class="absolute right-0 top-3.2rem h-[calc(100vh-6.4rem)] w-500px translate-x-full rounded-3xl bg-gray-300 container"
   />
 </template>
 
 <style scoped>
 .container{
   will-change: transform;
-  transition: all .5s linear;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
 }
 </style>
