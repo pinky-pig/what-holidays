@@ -17,3 +17,5 @@
 
 
 ## Points
+
+![20230901161725](https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230901161725.png)

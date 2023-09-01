@@ -4,7 +4,7 @@ export const useLayoutStore = defineStore({
   id: 'layoutStore',
   state: () => {
     return {
-      isShowHolidaysCalendar: true,
+      isShowHolidaysCalendar: false,
     }
   },
   getters: {},

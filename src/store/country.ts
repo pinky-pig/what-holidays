@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 
-export const useCountryStore = defineStore({
-  id: 'countryStore',
+export const useAreaStore = defineStore({
+  id: 'areaStore',
   state: () => {
     return {
-      currentCountry: 'China',
+      currentArea: 'China',
     }
   },
   getters: {},

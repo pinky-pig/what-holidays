@@ -3,7 +3,7 @@ const $container = ref<HTMLElement | null>()
 
 const layoutstore = useLayoutStore()
 
-const store = useCountryStore()
+const store = useAreaStore()
 
 watch(() => layoutstore.isShowHolidaysCalendar, (value) => {
   if (value)
@@ -22,7 +22,7 @@ function handleClose() {
     ref="$container"
     class="absolute right-0 top-3.2rem h-[calc(100vh-6.4rem)] w-500px translate-x-full rounded-3xl bg-gray-300 container"
   >
-    {{ store.currentCountry }}
+    {{ store.currentArea }}
 
     <button class="btn" @click="handleClose">
       关闭
