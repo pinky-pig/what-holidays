@@ -18,6 +18,8 @@
     "leaflet": "^1.9.4",
     "lit": "^2.8.0",
     "mapbox-gl": "^2.15.0",
+    "pinia": "^2.1.6",
+    "pinia-plugin-persist": "^1.0.0",
     "prismjs": "^1.29.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"
