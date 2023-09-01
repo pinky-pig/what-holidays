@@ -3,7 +3,7 @@ import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import type { IMarker } from '~/types'
 
-const emit = defineEmits(['switchHolidaysCalendar'])
+const layoutstore = useLayoutStore()
 
 let mapInstance: mapboxgl.Map | null = null
 
@@ -33,7 +33,7 @@ function initUserPosition() {
 
       marker.getElement().addEventListener('click', (e) => {
         // 在这里执行您希望的点击事件处理逻辑
-        emit('switchHolidaysCalendar', true)
+        layoutstore.setShowHolidaysCalendar(true)
       })
 
       mapInstance!.flyTo({

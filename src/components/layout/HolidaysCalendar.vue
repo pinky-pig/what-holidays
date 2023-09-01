@@ -1,25 +1,20 @@
 <script setup lang="ts">
 const $container = ref<HTMLElement | null>()
 
-const isShow = ref(false)
+const layoutstore = useLayoutStore()
 
-function setShow(flag: boolean) {
-  isShow.value = flag
-}
+const store = useCountryStore()
 
-const store = countryStore()
-
-watch(isShow, (value) => {
+watch(() => layoutstore.isShowHolidaysCalendar, (value) => {
   if (value)
     $container.value!.style.transform = 'translateX(-20px)'
   else
     $container.value!.style.transform = 'translateX(1000px)'
 })
 
-defineExpose({
-  isShow,
-  setShow,
-})
+function handleClose() {
+  layoutstore.setShowHolidaysCalendar(false)
+}
 </script>
 
 <template>
@@ -28,6 +23,10 @@ defineExpose({
     class="absolute right-0 top-3.2rem h-[calc(100vh-6.4rem)] w-500px translate-x-full rounded-3xl bg-gray-300 container"
   >
     {{ store.currentCountry }}
+
+    <button class="btn" @click="handleClose">
+      关闭
+    </button>
   </div>
 </template>
 
