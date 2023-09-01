@@ -3,8 +3,6 @@ import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import type { IMarker } from '~/types'
 
-const layoutstore = useLayoutStore()
-
 let mapInstance: mapboxgl.Map | null = null
 
 function marsOnloaded(map: mapboxgl.Map) {
@@ -33,7 +31,6 @@ function initUserPosition() {
 
       marker.getElement().addEventListener('click', (e) => {
         // 在这里执行您希望的点击事件处理逻辑
-        layoutstore.setShowHolidaysCalendar(true)
       })
 
       mapInstance!.flyTo({
