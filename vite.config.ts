@@ -11,6 +11,8 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import cesium from 'vite-plugin-cesium'
 import prismjs from 'vite-plugin-prismjs'
 
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -50,6 +52,11 @@ export default defineConfig({
         'vue',
         'vue-router',
         '@vueuse/core',
+        {
+          'naive-ui': [
+            'useButton',
+          ],
+        },
       ],
       dts: true,
       dirs: [
@@ -62,6 +69,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-components
     Components({
       dts: true,
+      resolvers: [NaiveUiResolver()],
     }),
 
     // https://github.com/antfu/unocss

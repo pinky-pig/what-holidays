@@ -27,6 +27,8 @@ function handleClose() {
     <button class="btn" @click="handleClose">
       关闭
     </button>
+
+    <n-date-picker panel type="date" />
   </div>
 </template>
 

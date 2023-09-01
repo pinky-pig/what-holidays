@@ -24,6 +24,8 @@ declare module 'vue' {
     MainMap: typeof import('./src/components/layout/MainMap.vue')['default']
     MapboxMap: typeof import('./src/components/MapboxMap.vue')['default']
     Modal: typeof import('./src/components/ui/Modal.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
+    NDatePicker: typeof import('naive-ui')['NDatePicker']
     Options: typeof import('./src/components/layout/Options.vue')['default']
     Preview: typeof import('./src/components/layout/Preview.vue')['default']
     RangeBar: typeof import('./src/components/ui/RangeBar.vue')['default']
