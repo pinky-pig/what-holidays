@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
+import type { IMarker } from '~/types'
+
+const emit = defineEmits(['switchHolidaysCalendar'])
 
 let mapInstance: mapboxgl.Map | null = null
 
@@ -22,9 +25,16 @@ function initUserPosition() {
 
       const el = document.createElement('div')
       el.innerHTML = `<logo-marker name="${'/avatar.svg'}" />`
-      new mapboxgl.Marker(el)
+      const marker = new mapboxgl.Marker(el)
         .setLngLat([crd.longitude, crd.latitude] as LngLatLike)
-        .addTo(mapInstance!)
+        .addTo(mapInstance!) as IMarker
+
+      marker.attributes = '111'
+
+      marker.getElement().addEventListener('click', (e) => {
+        // 在这里执行您希望的点击事件处理逻辑
+        emit('switchHolidaysCalendar', true)
+      })
 
       mapInstance!.flyTo({
         center: [crd.longitude, crd.latitude], // 您已经添加的点的坐标

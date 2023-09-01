@@ -28,6 +28,7 @@ function initMapbox(option: any) {
     container: mapContainer.value!,
     ...option,
     style: MapboxSetting.mapDarkStyle,
+    // style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [118.888175, 32.048268],
     zoom: 6,
     accessToken: MapboxSetting.token,
