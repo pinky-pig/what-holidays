@@ -23,6 +23,8 @@
   height: 100%;
   width: 100%;
   position: absolute;
+  z-index: 99;
+  pointer-events: none;
 }
 
 .border > div {
@@ -32,7 +34,7 @@
 }
 
 .border .frames div {
-  background: url("../img/svg/border.svg") repeat-x 50% 50%;
+  background: url("http://species-in-pieces.com/img/svg/border.svg") repeat-x 50% 50%;
   width: 100%;
   height: 20px;
   position: absolute;
@@ -43,7 +45,7 @@
 .border .frames div:nth-child(2), .border .frames div:nth-child(4) {
   width: 20px;
   height: 100%;
-  background: url("../img/svg/border-vert.svg") repeat-y 50% 50%;
+  background: url("http://species-in-pieces.com/img/svg/border-vert.svg") repeat-y 50% 50%;
 }
 
 .border .frames div:nth-child(3) {
@@ -62,7 +64,7 @@
 
 .border .corners div::before, .border .corners div::after {
   content: "";
-  background: url("../img/svg/corner.svg") no-repeat center center;
+  background: url("http://species-in-pieces.com/img/svg/corner.svg") no-repeat center center;
   width: 50px;
   height: 50px;
   position: absolute;

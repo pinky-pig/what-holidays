@@ -9,8 +9,12 @@ body,
   padding: 0;
 }
 
+html{
+  background: #BA93DE;
+}
+
 html.dark {
-  background: #121212;
+  background: #BA93DE;
 }
 
 

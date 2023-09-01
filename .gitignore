@@ -8,3 +8,6 @@ node_modules
 .idea/
 *.log
 pnpm-lock.yaml
+
+components.d.ts
+auto-importsd.ts

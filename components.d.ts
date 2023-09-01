@@ -28,6 +28,9 @@ declare module 'vue' {
     RangeBar: typeof import('./src/components/ui/RangeBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScratchyCircle: typeof import('./src/components/ui/ScratchyCircle.vue')['default']
+    ScratchyLogo: typeof import('./src/components/ui/ScratchyLogo.vue')['default']
+    ScratchyText: typeof import('./src/components/ui/ScratchyText.vue')['default']
     TextareaCode: typeof import('./src/components/ui/TextareaCode.vue')['default']
     Tools: typeof import('./src/components/layout/Tools.vue')['default']
   }
