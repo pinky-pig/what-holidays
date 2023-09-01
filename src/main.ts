@@ -8,6 +8,7 @@ import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 import 'cesium/Build/Cesium/Widgets/widgets.css'
+import 'leaflet/dist/leaflet.css'
 import '~/components/lit'
 
 const app = createApp(App)
