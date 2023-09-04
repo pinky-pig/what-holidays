@@ -10,8 +10,9 @@ declare module 'vue' {
     Alert: typeof import('./src/components/ui/Alert.vue')['default']
     AreaList: typeof import('./src/components/layout/AreaList.vue')['default']
     Background: typeof import('./src/components/ui/Background.vue')['default']
+    Body: typeof import('./src/components/Calendar/Body.vue')['default']
     BorderBackground: typeof import('./src/components/ui/BorderBackground.vue')['default']
-    Calendar: typeof import('./src/components/Calendar.vue')['default']
+    Calendar: typeof import('./src/components/Calendar/index.vue')['default']
     Code: typeof import('./src/components/layout/Code.vue')['default']
     ColorPicker: typeof import('./src/components/ui/ColorPicker.vue')['default']
     ConfettiCanvas: typeof import('./src/components/ui/ConfettiCanvas.vue')['default']
@@ -34,5 +35,6 @@ declare module 'vue' {
     ScratchyText: typeof import('./src/components/ui/ScratchyText.vue')['default']
     TextareaCode: typeof import('./src/components/ui/TextareaCode.vue')['default']
     Tools: typeof import('./src/components/layout/Tools.vue')['default']
+    WeekName: typeof import('./src/components/Calendar/WeekName.vue')['default']
   }
 }

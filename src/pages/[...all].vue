@@ -1,5 +1,5 @@
 <template>
   <div>
-    Not Found
+    <Calendar />
   </div>
 </template>

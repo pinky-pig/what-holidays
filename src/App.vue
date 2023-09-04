@@ -12,7 +12,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/noise.png');
+  /* background-image: url('/noise.png'); */
   background-repeat: repeat;
   opacity: .04;
   pointer-events: none;
