@@ -1,15 +1,38 @@
 <script setup lang="ts">
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
+import Holidays from 'date-holidays'
 import type { IMarker } from '~/types'
+import LOCATIONS from '~/assets/json/location.json'
 
+const hd = new Holidays()
+
+/**
+ * 初始化地区数据
+ */
+const areas = computed(() => {
+  const countriesObject = hd.getCountries()
+
+  const countriesArray = Object.keys(countriesObject).map(countryCode => ({
+    code: countryCode,
+    name: countriesObject[countryCode],
+    flag: `/flags/4x3/${countryCode.toLowerCase()}.svg`,
+    location: LOCATIONS.find(item => item.code === countryCode),
+  }))
+  return countriesArray
+})
+
+/**
+ * 地图加载完成
+ */
 let mapInstance: mapboxgl.Map | null = null
 
 function marsOnloaded(map: mapboxgl.Map) {
   mapInstance = map
-
   mapInstance.on('load', () => {
     initUserPosition()
+
+    initAreaPosition()
   })
 }
 
@@ -50,6 +73,19 @@ function initUserPosition() {
     },
   )
 }
+
+/**
+ * 获取到国家或地区后，从 location.json 获取对应的经纬度，添加点
+ */
+function initAreaPosition() {
+  areas.value.forEach((area) => {
+    if (area.location) {
+      new mapboxgl.Marker()
+        .setLngLat([area.location.longitude, area.location.latitude] as LngLatLike)
+        .addTo(mapInstance!) as IMarker
+    }
+  })
+}
 </script>
 
 <template>
@@ -59,5 +95,4 @@ function initUserPosition() {
 </template>
 
 <style scoped>
-
 </style>
