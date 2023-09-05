@@ -17,7 +17,7 @@ declare module 'vue' {
     ColorPicker: typeof import('./src/components/ui/ColorPicker.vue')['default']
     ConfettiCanvas: typeof import('./src/components/ui/ConfettiCanvas.vue')['default']
     GeneratorBySVG: typeof import('./src/components/GeneratorBySVG.vue')['default']
-    Header: typeof import('./src/components/layout/Header.vue')['default']
+    Header: typeof import('./src/components/Calendar/Header.vue')['default']
     HighlightCode: typeof import('./src/components/ui/HighlightCode.vue')['default']
     HolidaysCalendar: typeof import('./src/components/layout/HolidaysCalendar.vue')['default']
     LeafletMap: typeof import('./src/components/LeafletMap.vue')['default']
