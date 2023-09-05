@@ -10,11 +10,12 @@ body,
 }
 
 html{
-  background: #BA93DE;
+  background: #eeeeee;
 }
 
 html.dark {
-  background: #BA93DE;
+  /* background: #BA93DE; */
+  background: #eeeeee;
 }
 
 

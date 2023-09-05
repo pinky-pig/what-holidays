@@ -30,7 +30,7 @@ function initMapbox(option: any) {
     // style: MapboxSetting.mapDarkStyle,
     style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [118.888175, 32.048268],
-    zoom: 6,
+    zoom: 2,
     accessToken: MapboxSetting.token,
   })
   emit('onload', map)
