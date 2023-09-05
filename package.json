@@ -12,9 +12,11 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@iconify-json/flag": "^1.1.37",
     "@vueuse/core": "^10.1.2",
     "@vueuse/motion": "^2.0.0",
     "canvas-confetti": "^1.6.0",
+    "date-holidays": "^3.21.5",
     "dayjs": "^1.11.9",
     "leaflet": "^1.9.4",
     "lit": "^2.8.0",
