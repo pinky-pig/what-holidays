@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230727161358.png" width="600"/>
+  <img src="https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230905160648.png" width="600"/>
 </p>
 
 
 <h6 align='center'>
-  <a href="https://superellipse.mmeme.me/">在线体验</a>
+  <a href="">在线体验</a>
 </h6>
 
 ## 挂载自定义组件 DOM 到 Popup
@@ -18,4 +18,8 @@
 
 ## Points
 
-![20230901161725](https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230901161725.png)
+- Flag : https://github.com/lipis/flag-icons
+- Holiday Data : https://github.com/commenthol/date-holidays
+- Geo Data : https://developers.google.com/public-data/docs/canonical/countries_csv?hl=zh-cn
+
+<!-- ![20230901161725](https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230901161725.png) -->
