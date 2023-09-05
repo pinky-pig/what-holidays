@@ -2,8 +2,8 @@
 import type { ManipulateType } from 'dayjs'
 import dayjs from 'dayjs'
 import WeekName from './WeekName.vue'
-import Header from './Header.vue'
-import Body from './Body.vue'
+import Header from './CHeader.vue'
+import Body from './CBody.vue'
 import { generateMonthCalendar } from '~/utils/calendar'
 
 const initialDate = ref(dayjs(new Date()))
