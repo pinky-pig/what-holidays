@@ -3,8 +3,6 @@ import Home from './home.vue'
 </script>
 
 <template>
-  <BorderBackground />
-
   <Suspense>
     <Home />
   </Suspense>

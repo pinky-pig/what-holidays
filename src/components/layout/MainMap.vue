@@ -5,6 +5,8 @@ import Holidays from 'date-holidays'
 import type { IMarker } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
 
+const router = useRouter()
+
 const hd = new Holidays()
 
 /**
@@ -54,6 +56,7 @@ function initUserPosition() {
 
       marker.getElement().addEventListener('click', (e) => {
         // 在这里执行您希望的点击事件处理逻辑
+        router.push('/area')
       })
 
       mapInstance!.flyTo({

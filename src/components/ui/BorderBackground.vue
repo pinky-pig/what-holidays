@@ -14,6 +14,7 @@
       <div />
       <div />
     </div>
+    <slot />
   </div>
 </template>
 
@@ -22,14 +23,13 @@
   transition: all 0.25s cubic-bezier(0.62, 0.02, 0.34, 1);
   height: 100%;
   width: 100%;
-  position: absolute;
-  z-index: 99;
   pointer-events: none;
 }
 
 .border > div {
   height: 100%;
   width: 100%;
+  z-index: 99;
   position: absolute;
 }
 
