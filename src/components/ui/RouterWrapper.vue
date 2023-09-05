@@ -18,7 +18,7 @@ function closeAndToHome() {
   isOpen.value = false
   setTimeout(() => {
     router.go(-1)
-  }, 600)
+  }, 500)
 }
 </script>
 
