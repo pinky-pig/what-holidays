@@ -84,23 +84,31 @@ function initAreaPosition() {
   areas.value.forEach((area) => {
     if (area.location) {
       const el = document.createElement('div')
-      //   .LogoMarker:hover .logo{
-      //   animation: shake 1.5s ease-in-out infinite;
-      // }
       el.innerHTML = `
       <div class="hover:scale-110 flex flex-col items-center space-y-0.5 w-fit" style="max-width: 150px;">
         <div class="hover:animate-[shake_1.5s_ease-in-out_infinite] border-2 rounded border-solid px-1.5 flex items-center space-x-0.5 overflow-hidden w-fit cursor-pointer shadow-[rgba(170,166,170,0.40)] shadow-md bg-[rgba(152,208,255,0.5)] border-white py-[0.1875rem]">
           <img
             src="${area.flag}"
             class="w-4 h-4 block "
-            alt=""
           >
         </div>
       </div>
       `
-      new mapboxgl.Marker(el)
+      const marker = new mapboxgl.Marker(el)
         .setLngLat([area.location.longitude, area.location.latitude] as LngLatLike)
         .addTo(mapInstance!) as IMarker
+
+      marker.attributes = area
+
+      marker.getElement().addEventListener('click', (e) => {
+        // 在这里执行您希望的点击事件处理逻辑
+        router.push({
+          path: '/area',
+          query: {
+            code: area.code,
+          },
+        })
+      })
     }
   })
 }
