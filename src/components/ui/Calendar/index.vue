@@ -22,7 +22,7 @@ function changeMonth(type: ManipulateType, num: number) {
 </script>
 
 <template>
-  <div class="h-500px w-500px rounded-lg bg-white">
+  <div class="h-full w-full rounded-lg bg-white">
     <div class="h-full w-full flex flex-col items-center justify-center p-4">
       <Header :title="title" @changeMonth="changeMonth" />
       <WeekName />

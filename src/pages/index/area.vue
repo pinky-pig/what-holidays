@@ -2,6 +2,7 @@
 import Holidays from 'date-holidays'
 import dayjs from 'dayjs'
 import RouterWrapper from '../../components/ui/RouterWrapper.vue'
+import YearCalendar from './components/Year.vue'
 import type { Holiday } from '~/types/holiday'
 
 const route = useRoute()
@@ -32,8 +33,10 @@ function getYearHolidays(year: number) {
       China
     </template>
 
-    <div class="h-full w-full flex items-center justify-center rounded-3xl bg-[var(--card--placeholder-bg)]">
-      <div class="grid h-full w-full place-items-center overflow-auto rounded-3xl text-black">
+    <div class="h-auto w-full flex items-center justify-center rounded-3xl bg-[var(--card--placeholder-bg)]">
+      <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
+        <YearCalendar />
+
         <div v-for="item in holidays" :key="item.date" class="mb-2 border border-black">
           date: {{ item.date }}
           <br>

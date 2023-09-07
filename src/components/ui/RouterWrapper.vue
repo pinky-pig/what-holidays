@@ -42,7 +42,7 @@ function closeAndToHome() {
         </div>
       </div>
     </nav>
-    <main class="flex-1 flex-grow-2 overflow-hidden bg-[#ffffff] p-4">
+    <main class="flex-1 flex-grow-2 overflow-auto bg-[#ffffff] p-4">
       <slot />
     </main>
     <div class="bg-[#ffffff]">
