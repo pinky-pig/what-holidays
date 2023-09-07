@@ -4,8 +4,9 @@ import type { ManipulateType } from 'dayjs'
 withDefaults(
   defineProps<{
     title?: string
+    switchMonth?: boolean
   }>(),
-  { title: '' },
+  { title: '', switchMonth: true },
 )
 
 const emit = defineEmits<{
@@ -16,7 +17,7 @@ const emit = defineEmits<{
 <template>
   <div class="w-full flex flex-row">
     <button class="h-8 w-8 flex items-center justify-center text-[rgb(156,163,175)]" @click="emit('changeMonth', 'month', -1)">
-      <div class="h-5 w-5" i-carbon:chevron-left />
+      <div v-show="switchMonth" class="h-5 w-5" i-carbon:chevron-left />
     </button>
 
     <div class="flex flex-1 items-center justify-center text-center font-semibold text-[rgb(17,24,39)]">
@@ -24,7 +25,7 @@ const emit = defineEmits<{
     </div>
 
     <button class="h-8 w-8 flex items-center justify-center text-[rgb(156,163,175)]" @click="emit('changeMonth', 'month', 1)">
-      <div class="h-5 w-5" i-carbon:chevron-right />
+      <div v-show="switchMonth" class="h-5 w-5" i-carbon:chevron-right />
     </button>
   </div>
 </template>

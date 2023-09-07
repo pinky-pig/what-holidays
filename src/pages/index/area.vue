@@ -7,9 +7,9 @@ import type { Holiday } from '~/types/holiday'
 
 const route = useRoute()
 
-const currentArea = route.query.code as string
+const currentArea = ref(route.query.code as string)
 const currentYear = ref(dayjs(new Date()).year())
-const hd = new Holidays(currentArea)
+const hd = new Holidays(currentArea.value)
 
 const holidays = ref<Holiday[]>([])
 
@@ -25,6 +25,12 @@ function getYearHolidays(year: number) {
   const days = hd.getHolidays(year)
   return days
 }
+
+// onMounted(() => {
+//   setTimeout(() => {
+//     currentYear.value = 2022
+//   }, 3000)
+// })
 </script>
 
 <template>
@@ -35,7 +41,7 @@ function getYearHolidays(year: number) {
 
     <div class="h-auto w-full flex items-center justify-center rounded-3xl bg-[var(--card--placeholder-bg)]">
       <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
-        <YearCalendar />
+        <YearCalendar :current-year="currentYear" />
 
         <div v-for="item in holidays" :key="item.date" class="mb-2 border border-black">
           date: {{ item.date }}
