@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
+import type { Holiday } from '~/types'
 
 withDefaults(
   defineProps<{
     currentYear?: number
+    holidays?: Holiday[]
   }>(),
   {
     currentYear: () => dayjs(new Date()).year(),
@@ -24,7 +26,8 @@ const months = Array(12)
           showMonth: true,
           switchMonth: false,
         }"
-        :current-date="new Date(`${currentYear}-${index + 1}-01`) "
+        :current-date="new Date(`${currentYear}-${index + 1}-01`)"
+        :holidays="holidays"
       />
     </div>
   </div>

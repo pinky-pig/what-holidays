@@ -41,7 +41,7 @@ function getYearHolidays(year: number) {
 
     <div class="h-auto w-full flex items-center justify-center rounded-3xl bg-[var(--card--placeholder-bg)]">
       <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
-        <YearCalendar :current-year="currentYear" />
+        <YearCalendar :current-year="currentYear" :holidays="holidays" />
 
         <div v-for="item in holidays" :key="item.date" class="mb-2 border border-black">
           date: {{ item.date }}

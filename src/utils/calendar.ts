@@ -5,11 +5,30 @@ import localeData from 'dayjs/plugin/localeData.js'
 dayjs.extend(localeData)
 
 export type DateCellType = 'normal' | 'today' | 'week' | 'next-month' | 'prev-month'
-interface DateCell {
+export interface DateCell {
   text?: number
   isSelected?: boolean
   type?: DateCellType
   date: Dayjs
+  remark?: any
+}
+// 这个只是需要判断 holiday 的类型，然后判断 select 的内容，如果不需要这个，只需要 calendar ，可以直接删除
+type HolidayType = 'public' | 'bank' | 'optional' | 'school' | 'observance' | string
+interface Holiday {
+  /** datestring as "YYYY-MM-DD hh:mm:ss [-hh:ss]" */
+  date: string
+  /** start date */
+  start: Date
+  /** end date */
+  end: Date
+  /** name of holiday in selected or fallback language */
+  name: string
+  /** type of holiday */
+  type: HolidayType
+  /** the holiday rule - use for references */
+  rule: string
+  /** holiday is a substritute day */
+  substitute?: boolean
 }
 
 /**
@@ -22,8 +41,9 @@ interface DateCell {
  * 假如第一天是周三，那么往前减去3，就是这一行的第一天，所以从这天算往数组中 push ，加上 'prev-month' 标志。
  * 假如第一天是周日，那么需要减去7。假如第一天是周六，那么需要减去6。
  * 最后的日期，只需要长度满足 6 * 7 = 42 就行。
+ * 这里有个选中字段，因为日历是按照单个渲染的，但是前后补充的时候，有可能补充的日子也是要选中的，所以判断选中的时候，要传入所有要选中的日子
  */
-export function generateMonthCalendar(date: Dayjs) {
+export function generateMonthCalendar(date: Dayjs, holidays: Holiday[]): DateCell[][] {
   // 日历的初始值
   const rows = [[], [], [], [], [], []]
   const cols = 7
@@ -45,13 +65,22 @@ export function generateMonthCalendar(date: Dayjs) {
   // 4. 定义的判断循环的变量
   let count = 1
 
+  // 5. 将所有的节日日期转成 YYYY-MM-DD。暂时只考虑全天假，半天假会有备注
+  const hds = holidays.map((item) => {
+    return {
+      ...item,
+      formatDate: dayjs(new Date(item.date)).format('YYYY-MM-DD'),
+    }
+  })
+
   // 5. 循环填充表格，6行7列
   for (let row = 0; row < rows.length; row++) {
     for (let col = 0; col < cols; col++) {
       const cellDate = startDate.add(count, 'day')
       const text = cellDate.date()
       // 是否选中
-      const isSelected = cellDate.format('YYYY-MM-DD') === date.format('YYYY-MM-DD')
+      // const isSelected = cellDate.format('YYYY-MM-DD') === date.format('YYYY-MM-DD')
+      const cellHoliday = hds.find(item => item.formatDate === cellDate.format('YYYY-MM-DD'))
       // 默认当月日期
       let type: DateCellType = 'normal'
       if (count < monthstartDay) {
@@ -67,7 +96,8 @@ export function generateMonthCalendar(date: Dayjs) {
         type, // 判断月份（上个月、这个月、下个月）
         date: cellDate, // dayjs 格式的日期
         text, // 日子
-        isSelected, // 这一天是否选中
+        isSelected: !!cellHoliday, // 这一天是否选中
+        remark: cellHoliday,
       }
       count++
     }

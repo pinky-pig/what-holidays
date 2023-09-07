@@ -5,6 +5,7 @@ import WeekName from './WeekName.vue'
 import Header from './CHeader.vue'
 import Body from './CBody.vue'
 import { generateMonthCalendar } from '~/utils/calendar'
+import type { Holiday } from '~/types'
 
 const props = withDefaults(
   defineProps<{
@@ -14,7 +15,7 @@ const props = withDefaults(
       switchMonth: boolean
     }
     currentDate?: Date
-    selectDate?: Date[]
+    holidays?: Holiday[]
   }>(),
   {
     headerOption: () => ({
@@ -23,21 +24,21 @@ const props = withDefaults(
       switchMonth: true,
     }),
     currentDate: () => new Date(),
-    selectDate: () => [new Date(), new Date()],
+    holidays: () => [], // 这个月被选中的
   },
 )
 
 const initialDate = ref(dayjs(props.currentDate))
 
-const tableData = ref(generateMonthCalendar(initialDate.value))
+const tableData = ref(generateMonthCalendar(initialDate.value, props.holidays))
 
 // 当前日期改变的时候， 重新获取 table 数据
 watch(() => props.currentDate, (v) => {
-  tableData.value = generateMonthCalendar(dayjs(v))
+  tableData.value = generateMonthCalendar(dayjs(v), props.holidays)
 })
 
 watch(() => initialDate.value, (v) => {
-  tableData.value = generateMonthCalendar(v)
+  tableData.value = generateMonthCalendar(v, props.holidays)
 })
 
 const title = computed(() => {
