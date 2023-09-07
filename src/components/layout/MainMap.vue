@@ -6,9 +6,9 @@ import type { IMarker } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
 
 const router = useRouter()
+const store = useAreaStore()
 
 const hd = new Holidays()
-
 /**
  * 初始化地区数据
  */
@@ -101,7 +101,8 @@ function initAreaPosition() {
       marker.attributes = area
 
       marker.getElement().addEventListener('click', (e) => {
-        // 在这里执行您希望的点击事件处理逻辑
+        // 将 area 传到 store ，路由跳转
+        store.currentArea = area
         router.push({
           path: '/area',
           query: {

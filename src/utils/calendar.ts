@@ -10,7 +10,7 @@ export interface DateCell {
   isSelected?: boolean
   type?: DateCellType
   date: Dayjs
-  remark?: any
+  note?: any
 }
 // 这个只是需要判断 holiday 的类型，然后判断 select 的内容，如果不需要这个，只需要 calendar ，可以直接删除
 type HolidayType = 'public' | 'bank' | 'optional' | 'school' | 'observance' | string
@@ -97,7 +97,7 @@ export function generateMonthCalendar(date: Dayjs, holidays: Holiday[]): DateCel
         date: cellDate, // dayjs 格式的日期
         text, // 日子
         isSelected: !!cellHoliday, // 这一天是否选中
-        remark: cellHoliday,
+        note: cellHoliday,
       }
       count++
     }

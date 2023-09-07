@@ -1,3 +1,5 @@
+import type LOCATIONS from '~/assets/json/location.json'
+
 export type HolidayType = 'public' | 'bank' | 'optional' | 'school' | 'observance' | string
 
 export interface Holiday {
@@ -15,4 +17,16 @@ export interface Holiday {
   rule: string
   /** holiday is a substritute day */
   substitute?: boolean
+}
+
+export interface AreaType {
+  code: string
+  name: string
+  flag: string
+  location: {
+    code: string
+    latitude: number
+    longitude: number
+    name: string
+  } | undefined
 }

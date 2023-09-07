@@ -3,9 +3,11 @@ import Holidays from 'date-holidays'
 import dayjs from 'dayjs'
 import RouterWrapper from '../../components/ui/RouterWrapper.vue'
 import YearCalendar from './components/Year.vue'
+import HolidayList from './components/List.vue'
 import type { Holiday } from '~/types/holiday'
 
 const route = useRoute()
+const store = useAreaStore()
 
 const currentArea = ref(route.query.code as string)
 const currentYear = ref(dayjs(new Date()).year())
@@ -31,23 +33,28 @@ function getYearHolidays(year: number) {
 //     currentYear.value = 2022
 //   }, 3000)
 // })
+
+const isShowList = ref(true)
 </script>
 
 <template>
   <RouterWrapper>
     <template #title>
-      China
+      {{ store.currentArea?.name || "Area" }}
     </template>
 
-    <div class="h-auto w-full flex items-center justify-center rounded-3xl bg-[var(--card--placeholder-bg)]">
+    <div class="h-auto w-full flex flex-col gap-10px rounded-3xl bg-[var(--card--placeholder-bg)]">
+      <button
+        type="button"
+        class="w-100px btn"
+        @click="isShowList = !isShowList"
+      >
+        Button
+      </button>
       <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
-        <YearCalendar :current-year="currentYear" :holidays="holidays" />
+        <HolidayList v-show="isShowList" :holidays="holidays" />
 
-        <div v-for="item in holidays" :key="item.date" class="mb-2 border border-black">
-          date: {{ item.date }}
-          <br>
-          name: {{ item.name }}
-        </div>
+        <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
       </div>
     </div>
   </RouterWrapper>
