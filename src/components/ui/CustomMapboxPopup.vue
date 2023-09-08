@@ -10,16 +10,14 @@ const isHolidayInNow = ref<false | Holiday[]>(false)
 // 3. 最近的下個假日的信息（名字、時間）
 // const nextHoliday = ref<Holiday[] | null>(null)
 
-onActivated(() => {
-  if (!store.currentArea)
-    return
+watch(() => store.currentArea?.code, (v) => {
+  if (v) {
+    hd = new Holidays(v)
 
-  hd = new Holidays(store.currentArea.code)
-
-  // 1. 今天這個地方是否是假日
-  isHolidayInNow.value = hd.isHoliday(new Date('2023-10-01'))
-
-  // 2. 這個月是否有假日，如果有，那麽信息（名字、時間）
+    // 1. 今天這個地方是否是假日
+    isHolidayInNow.value = hd.isHoliday(new Date('2023-10-01'))
+    // 2. 這個月是否有假日，如果有，那麽信息（名字、時間）
+  }
 })
 </script>
 
