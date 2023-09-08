@@ -23,3 +23,20 @@
 - Geo Data : https://developers.google.com/public-data/docs/canonical/countries_csv?hl=zh-cn
 
 <!-- ![20230901161725](https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230901161725.png) -->
+
+
+```ts
+// Vue3 弹窗双向绑定
+const el = document.createElement('div')
+el.innerHTML = `
+        <div id="customMapboxPopup"></div>
+      `
+new mapboxgl.Marker(el)
+  .setLngLat([-96, 37.8] as LngLatLike)
+  .addTo(mapInstance!) as IMarker
+
+nextTick(() => {
+  const popup = createApp(CustomMapboxPopup)
+  popup.mount('#customMapboxPopup')
+})
+```

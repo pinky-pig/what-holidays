@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl'
 import Holidays from 'date-holidays'
 import type { IMarker } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
+import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 
 const router = useRouter()
 const store = useAreaStore()
@@ -29,13 +30,32 @@ const areas = computed(() => {
  */
 let mapInstance: mapboxgl.Map | null = null
 
+let markerPopup: IMarker | null = null
+
 function marsOnloaded(map: mapboxgl.Map) {
   mapInstance = map
   mapInstance.on('load', () => {
+    initMarkerPopup()
+
     initUserPosition()
 
     initAreaPosition()
   })
+}
+
+/**
+ * 使用 marker 创建 popup
+ */
+function initMarkerPopup() {
+  const el = document.createElement('div')
+  el.id = 'customMapboxPopup'
+
+  markerPopup = new mapboxgl.Marker(el)
+    .setLngLat([-96, 37.8] as LngLatLike)
+    // .addTo(mapInstance!) as IMarker
+
+  const popup = createApp(CustomMapboxPopup)
+  popup.mount('#customMapboxPopup')
 }
 
 /**
@@ -103,12 +123,13 @@ function initAreaPosition() {
       marker.getElement().addEventListener('click', (e) => {
         // 将 area 传到 store ，路由跳转
         store.currentArea = area
-        router.push({
-          path: '/area',
-          query: {
-            code: area.code,
-          },
-        })
+
+        // router.push({
+        //   path: '/area',
+        //   query: {
+        //     code: area.code,
+        //   },
+        // })
       })
     }
   })
