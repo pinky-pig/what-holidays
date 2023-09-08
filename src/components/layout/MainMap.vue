@@ -2,7 +2,7 @@
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import Holidays from 'date-holidays'
-import type { IMarker } from '~/types'
+import type { IMarker, IPopup } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
 import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 
@@ -30,7 +30,7 @@ const areas = computed(() => {
  */
 let mapInstance: mapboxgl.Map | null = null
 
-let markerPopup: IMarker | null = null
+let markerPopup: IPopup | null = null
 
 function marsOnloaded(map: mapboxgl.Map) {
   mapInstance = map
@@ -50,12 +50,47 @@ function initMarkerPopup() {
   const el = document.createElement('div')
   el.id = 'customMapboxPopup'
 
-  markerPopup = new mapboxgl.Marker(el)
-    .setLngLat([-96, 37.8] as LngLatLike)
-    // .addTo(mapInstance!) as IMarker
+  markerPopup = new mapboxgl.Marker(
+    el,
+    {
+      offset: [0, -170], // [宽, 高]  这个值应该是 -50% ，数值是根据挂载的 div 的高度计算的
+    },
+  )
+    .setLngLat([0, 0] as LngLatLike)
+    .addTo(mapInstance!) as IPopup
 
   const popup = createApp(CustomMapboxPopup)
   popup.mount('#customMapboxPopup')
+
+  markerPopup.remove()
+
+  markerPopup.isShow = false
+
+  markerPopup.show = function (position: LngLatLike) {
+    if (!markerPopup)
+      return
+
+    if (markerPopup.isShow) {
+      // 说明已经显示了，设置位置就行了
+      markerPopup?.setLngLat(position as LngLatLike)
+    }
+    else {
+      // 说明选择没有显示，那么设置位置，再添加到地图上
+      markerPopup?.setLngLat(position as LngLatLike)
+      mapInstance && markerPopup!.addTo(mapInstance!)
+    }
+  }
+  markerPopup.hide = function () {
+    if (!markerPopup)
+      return
+    if (markerPopup.isShow) {
+      // 说明已经显示了，移除
+      markerPopup.remove()
+    }
+    else {
+      // 说明选择没有显示，那么不需要操作
+    }
+  }
 }
 
 /**
@@ -121,8 +156,10 @@ function initAreaPosition() {
       marker.attributes = area
 
       marker.getElement().addEventListener('click', (e) => {
-        // 将 area 传到 store ，路由跳转
         store.currentArea = area
+
+        if (area.location?.longitude && area.location?.latitude)
+          markerPopup!.show([area.location.longitude, area.location.latitude])
 
         // router.push({
         //   path: '/area',

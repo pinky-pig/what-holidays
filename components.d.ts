@@ -17,7 +17,6 @@ declare module 'vue' {
     Code: typeof import('./src/components/layout/Code.vue')['default']
     ColorPicker: typeof import('./src/components/ui/ColorPicker.vue')['default']
     ConfettiCanvas: typeof import('./src/components/ui/ConfettiCanvas.vue')['default']
-    copy: typeof import('./src/components/ui/ScratchyBackground copy.vue')['default']
     CTable: typeof import('./src/components/ui/CTable.vue')['default']
     CustomMapboxPopup: typeof import('./src/components/ui/CustomMapboxPopup.vue')['default']
     GeneratorBySVG: typeof import('./src/components/GeneratorBySVG.vue')['default']
