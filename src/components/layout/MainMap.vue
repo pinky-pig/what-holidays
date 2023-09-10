@@ -53,7 +53,8 @@ function initMarkerPopup() {
   markerPopup = new mapboxgl.Marker(
     el,
     {
-      offset: [0, -170], // [宽, 高]  这个值应该是 -50% ，数值是根据挂载的 div 的高度计算的
+      offset: [0, -20], // [宽, 高]  这个值应该是 -50% ，数值是根据挂载的 div 的高度计算的
+      anchor: 'bottom',
     },
   )
     .setLngLat([0, 0] as LngLatLike)

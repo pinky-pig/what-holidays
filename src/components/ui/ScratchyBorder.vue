@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <div class="border">
     <div class="frames">
@@ -22,16 +18,10 @@
 </template>
 
 <style scoped>
-.content {
-  width: 100%;
-  height: 100%;
-  z-index: 98;
-}
-
 .border {
   position: relative;
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  /* height: 300px; */
   border-radius: 15px;
   overflow: hidden;
   padding: 10px;
@@ -52,7 +42,7 @@
 .border .frames div:nth-child(2),
 .border .frames div:nth-child(4) {
   width: 20px;
-  height: 100%;
+  height: 180%;
   background: url("~/assets/svg/speciesBorderVert.svg") repeat-y 50% 50%;
 }
 
@@ -102,5 +92,11 @@
   top: auto;
   bottom: 11px;
   transform: rotate(270deg);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  z-index: 98;
 }
 </style>
