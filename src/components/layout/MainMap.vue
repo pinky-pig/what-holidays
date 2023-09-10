@@ -30,8 +30,6 @@ const areas = computed(() => {
  */
 let mapInstance: mapboxgl.Map | null = null
 
-let markerPopup: IPopup | null = null
-
 function marsOnloaded(map: mapboxgl.Map) {
   mapInstance = map
   mapInstance.on('load', () => {
@@ -50,7 +48,7 @@ function initMarkerPopup() {
   const el = document.createElement('div')
   el.id = 'customMapboxPopup'
 
-  markerPopup = new mapboxgl.Marker(
+  store.markerPopup = new mapboxgl.Marker(
     el,
     {
       offset: [0, -20], // [宽, 高]  这个值应该是 -50% ，数值是根据挂载的 div 的高度计算的
@@ -63,34 +61,37 @@ function initMarkerPopup() {
   const popup = createApp(CustomMapboxPopup)
   popup.mount('#customMapboxPopup')
 
-  markerPopup.remove()
+  store.markerPopup.remove()
 
-  markerPopup.isShow = false
+  store.markerPopup.attributes = {
+    isShow: false,
+    show(position: LngLatLike) {
+      if (!store.markerPopup)
+        return
 
-  markerPopup.show = function (position: LngLatLike) {
-    if (!markerPopup)
-      return
-
-    if (markerPopup.isShow) {
-      // 说明已经显示了，设置位置就行了
-      markerPopup?.setLngLat(position as LngLatLike)
-    }
-    else {
+      if (store.markerPopup.attributes.isShow) {
+        // 说明已经显示了，设置位置就行了
+        store.markerPopup?.setLngLat(position as LngLatLike)
+      }
+      else {
       // 说明选择没有显示，那么设置位置，再添加到地图上
-      markerPopup?.setLngLat(position as LngLatLike)
-      mapInstance && markerPopup!.addTo(mapInstance!)
-    }
-  }
-  markerPopup.hide = function () {
-    if (!markerPopup)
-      return
-    if (markerPopup.isShow) {
-      // 说明已经显示了，移除
-      markerPopup.remove()
-    }
-    else {
+        store.markerPopup?.setLngLat(position as LngLatLike)
+        store.markerPopup.attributes.isShow = true
+        mapInstance && store.markerPopup!.addTo(mapInstance!)
+      }
+    },
+    hide() {
+      if (!store.markerPopup)
+        return
+      if (store.markerPopup.attributes.isShow) {
+        // 说明已经显示了，移除
+        store.markerPopup.attributes.isShow = false
+        store.markerPopup.remove()
+      }
+      else {
       // 说明选择没有显示，那么不需要操作
-    }
+      }
+    },
   }
 }
 
@@ -160,7 +161,7 @@ function initAreaPosition() {
         store.currentArea = area
 
         if (area.location?.longitude && area.location?.latitude)
-          markerPopup!.show([area.location.longitude, area.location.latitude])
+          store.markerPopup!.attributes.show([area.location.longitude, area.location.latitude])
 
         // router.push({
         //   path: '/area',

@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import type { AreaType } from '~/types'
+import type { AreaType, IPopup } from '~/types'
 
 export const useAreaStore = defineStore({
   id: 'areaStore',
   state: () => {
     return {
       currentArea: null as AreaType | null,
+      markerPopup: null as IPopup | null,
     }
   },
   getters: {},

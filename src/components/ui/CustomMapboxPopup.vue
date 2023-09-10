@@ -25,7 +25,7 @@ function main() {
     const holidaysInYear = hd.getHolidays(2023)
 
     // 1. 今天這個地方是否是假日
-    isHolidayInNow.value = hd.isHoliday(new Date('2023-10-01'))
+    isHolidayInNow.value = hd.isHoliday(new Date())
     // 2. 這個月是否有假日，如果有，那麽信息（名字、時間）
     holidayInMonth.value = getHolidaysInMonth(holidaysInYear)
     // 3. 最近的下個假日的信息（名字、時間）
@@ -57,10 +57,17 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
   // 如果找到了最近的日期，返回该对象，否则返回null
   return filteredArray.length > 0 ? filteredArray[0] : null
 }
+
+function closeMarkerPopup() {
+  store.markerPopup!.attributes.hide()
+}
 </script>
 
 <template>
   <div>
+    <div class="close pointer-events-auto cursor-pointer" @click="closeMarkerPopup">
+      <div i-carbon:close-filled />
+    </div>
     <ScratchyBorder>
       <div class="popup">
         <!-- 今天是节假日吗 -->
@@ -87,7 +94,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
           </div>
           <div class="flex flex-row flex-wrap">
             <p v-for="item in holidayInMonth" :key="item.name">
-              {{ item.name }}
+              {{ item.name }}&nbsp;
             </p>
           </div>
         </div>
@@ -126,6 +133,32 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
 </template>
 
 <style scoped>
+.close {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #944DFE;
+  background: white;
+  /* background: transparent url("http://species-in-pieces.com/img/textured-ui/threat.png") center center no-repeat; */
+  margin-left: auto;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.close::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -50%;
+  width: 2px;
+  height: 50%;
+  background: white;
+  transform: translate(-50%, 0%);
+}
+
 .popup {
   width: 100%;
   height: 100%;
