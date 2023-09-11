@@ -9,15 +9,7 @@ const value = ref('')
 </template>
 
 <style scoped>
-.searchText{
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  outline: 0px solid ;
-  background: transparent;
-}
 .searchBar {
-  margin: 10px;
   width: 300px;
   position: relative;
   z-index: 999;
@@ -48,5 +40,12 @@ const value = ref('')
   right: -53%;
   background: url("http://species-in-pieces.com/img/textured-ui/popout-right.png") no-repeat center center;
   background-size: contain;
+}
+.searchText{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  outline: 0px solid ;
+  background: transparent;
 }
 </style>
