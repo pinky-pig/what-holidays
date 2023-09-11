@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const store = useAreaStore()
 </script>
 
 <template>
@@ -13,7 +14,10 @@
       <SearchInput class="pointer-events-auto" />
     </div>
 
-    <div class="pointer-events-none absolute bottom-20px right-20px z-999">
+    <div
+      :class="store.currentArea ? 'bottom-20px' : '-bottom-full'"
+      class="pointer-events-none absolute left-20px z-999 transition-all duration-700 ease-in-out"
+    >
       <MonthHoliday class="pointer-events-auto" />
     </div>
 

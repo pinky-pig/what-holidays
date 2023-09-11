@@ -15,7 +15,8 @@ onMounted(() => {
   main()
 })
 watch(() => store.currentArea?.code, (v) => {
-  main()
+  if (v)
+    main()
 })
 
 // 主逻辑
@@ -60,6 +61,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
 
 function closeMarkerPopup() {
   store.markerPopup!.attributes.hide()
+  store.currentArea = null
 }
 </script>
 
