@@ -132,6 +132,12 @@ function closeMarkerPopup() {
   </div>
 </template>
 
+<style>
+#customMapboxPopup{
+  z-index: -1;
+}
+</style>
+
 <style scoped>
 .close {
   border-radius: 50%;

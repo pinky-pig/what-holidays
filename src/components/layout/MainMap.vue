@@ -61,7 +61,7 @@ function initMarkerPopup() {
   const popup = createApp(CustomMapboxPopup)
   popup.mount('#customMapboxPopup')
 
-  store.markerPopup.remove()
+  // store.markerPopup.remove()
 
   store.markerPopup.attributes = {
     isShow: false,
@@ -74,10 +74,14 @@ function initMarkerPopup() {
         store.markerPopup?.setLngLat(position as LngLatLike)
       }
       else {
-      // 说明选择没有显示，那么设置位置，再添加到地图上
+        // 说明选择没有显示，那么设置位置，再添加到地图上
         store.markerPopup?.setLngLat(position as LngLatLike)
         store.markerPopup.attributes.isShow = true
-        mapInstance && store.markerPopup!.addTo(mapInstance!)
+        // mapInstance && store.markerPopup!.addTo(mapInstance!)
+
+        const popDom = document.getElementById('customMapboxPopup')
+        if (popDom)
+          popDom.style.zIndex = '99'
       }
     },
     hide() {
@@ -86,7 +90,10 @@ function initMarkerPopup() {
       if (store.markerPopup.attributes.isShow) {
         // 说明已经显示了，移除
         store.markerPopup.attributes.isShow = false
-        store.markerPopup.remove()
+        const popDom = document.getElementById('customMapboxPopup')
+        if (popDom)
+          popDom.style.zIndex = '-1'
+        // store.markerPopup.remove()
       }
       else {
       // 说明选择没有显示，那么不需要操作
