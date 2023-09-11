@@ -1,19 +1,30 @@
 <script setup lang="ts">
-
+const value = ref('')
 </script>
 
 <template>
-  <div class="searchBar z-9 h30 w30 bg-red-100">
-    <div class="inner">
-      666
-    </div>
+  <div class="searchBar">
+    <input v-model="value" placeholder="可以输入国家 CODE 检索" class="searchText" type="text">
   </div>
 </template>
 
 <style scoped>
+.searchText{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  outline: 0px solid ;
+  background: transparent;
+}
 .searchBar {
-  padding: 5px;
-  border-radius: 35px;
+  margin: 10px;
+  width: 300px;
+  position: relative;
+  z-index: 999;
+  padding: 3px;
+  height: 40px;
+  background: url("http://species-in-pieces.com/img/textured-ui/popout-mid.png") repeat-x left center;
+  background-size: contain;
 }
 
 .searchBar::before {
@@ -21,9 +32,21 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  pointer-events: none;
   top: 0;
-  left: 0;
-  clip-path: polygon(46% 21%, 76% 31%, 65% 59%, 32% 40%);
-  background: url("http://species-in-pieces.com/img/textured-ui/green-texture.png") repeat center center/40px 40px;
+  left: -53%;
+  background: url("http://species-in-pieces.com/img/textured-ui/popout-left.png") no-repeat center center;
+  background-size: contain;
+}
+.searchBar::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  right: -53%;
+  background: url("http://species-in-pieces.com/img/textured-ui/popout-right.png") no-repeat center center;
+  background-size: contain;
 }
 </style>
