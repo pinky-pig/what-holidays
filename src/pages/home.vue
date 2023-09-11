@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ScratchySearchInput from '~/components/ui/ScratchySearchInput.vue'
 </script>
 
 <template>
