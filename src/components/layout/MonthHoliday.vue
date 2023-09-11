@@ -13,9 +13,12 @@ defineExpose({
 </script>
 
 <template>
-  <div class="monthHoliday">
-    <Calendar />
-  </div>
+  <ScratchyBorder class="max-w-400px!">
+    <div class="monthHoliday">
+      <Calendar />
+      666
+    </div>
+  </ScratchyBorder>
 </template>
 
 <style scoped>
