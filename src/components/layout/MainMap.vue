@@ -71,7 +71,18 @@ function initMarkerPopup() {
 
       if (store.markerPopup.attributes.isShow) {
         // 说明已经显示了，设置位置就行了
-        store.markerPopup?.setLngLat(position as LngLatLike)
+
+        const popDom = document.getElementById('customMapboxPopup')
+        if (popDom) {
+          popDom.style.zIndex = '-1'
+          store.markerPopup?.setLngLat(position as LngLatLike)
+          popDom.style.animation = ''
+
+          setTimeout(() => {
+            popDom.style.zIndex = '99'
+            popDom.style.animation = 'blur-show .4s'
+          })
+        }
       }
       else {
         // 说明选择没有显示，那么设置位置，再添加到地图上
