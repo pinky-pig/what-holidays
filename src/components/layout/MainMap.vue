@@ -5,11 +5,20 @@ import Holidays from 'date-holidays'
 import type { IMarker, IPopup } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
 import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
+import ScratchyModal from '~/components/ui/ScratchyModal.vue'
 
-const router = useRouter()
 const store = useAreaStore()
 
 const hd = new Holidays()
+
+/**
+ * 定义弹窗
+ */
+const $ScratchyModal = ref<typeof ScratchyModal | null>(null)
+function open() {
+  $ScratchyModal.value!.open()
+}
+
 /**
  * 初始化地区数据
  */
@@ -137,7 +146,8 @@ function initUserPosition() {
 
       marker.getElement().addEventListener('click', (e) => {
         // 在这里执行您希望的点击事件处理逻辑
-        router.push('/area')
+        // router.push('/area')
+        open()
       })
 
       mapInstance!.flyTo({
@@ -202,8 +212,11 @@ function initAreaPosition() {
 <template>
   <div class="h-full w-full overflow-hidden">
     <MapboxMap @onload="marsOnloaded" />
+
+    <ScratchyModal ref="$ScratchyModal" />
   </div>
 </template>
 
 <style scoped>
+
 </style>

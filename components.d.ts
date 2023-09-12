@@ -38,6 +38,7 @@ declare module 'vue' {
     ScratchyBackground: typeof import('./src/components/ui/ScratchyBackground.vue')['default']
     ScratchyBorder: typeof import('./src/components/ui/ScratchyBorder.vue')['default']
     ScratchyCircle: typeof import('./src/components/ui/ScratchyCircle.vue')['default']
+    ScratchyModal: typeof import('./src/components/ui/ScratchyModal.vue')['default']
     ScratchySearchInput: typeof import('./src/components/layout/ScratchySearchInput.vue')['default']
     ScratchyText: typeof import('./src/components/ui/ScratchyText.vue')['default']
     SearchInput: typeof import('./src/components/layout/SearchInput.vue')['default']
