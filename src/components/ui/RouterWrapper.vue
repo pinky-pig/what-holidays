@@ -27,26 +27,28 @@ function closeAndToHome() {
     :class="isOpen ? 'bubbleCardUp' : 'bubbleCardDown'"
     class="fixed bottom-0 left-0 right-0 top-0 z-50 z-999 flex flex-col"
   >
-    <nav class="bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
-      <div class="flex items-center justify-between gap-2">
-        <div class="flex items-center gap-4">
-          <div class="return-arrow" @click="closeAndToHome">
-            <div i-carbon:direction-loop-left />
+    <div class="h-full w-full flex flex-col pt-60px">
+      <nav class="overflow-hidden rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-4">
+            <div class="return-arrow" @click="closeAndToHome">
+              <div i-carbon:direction-loop-left />
+            </div>
+            <span>
+              <slot name="title" />
+            </span>
           </div>
-          <span>
-            <slot name="title" />
-          </span>
+          <div class="flex items-center justify-end gap-2">
+            <div i-carbon:moon />
+          </div>
         </div>
-        <div class="flex items-center justify-end gap-2">
-          <div i-carbon:moon />
-        </div>
+      </nav>
+      <main class="flex-1 flex-grow-2 overflow-auto bg-[#ffffff] p-4">
+        <slot />
+      </main>
+      <div class="bg-[#ffffff]">
+        <slot name="bottom" />
       </div>
-    </nav>
-    <main class="flex-1 flex-grow-2 overflow-auto bg-[#ffffff] p-4">
-      <slot />
-    </main>
-    <div class="bg-[#ffffff]">
-      <slot name="bottom" />
     </div>
   </div>
 </template>
