@@ -14,7 +14,7 @@ watch(() => route.fullPath, (v) => {
   const rootDom = document.querySelector('#appRoot') as HTMLElement
   if (v === '/area') {
     if (rootDom) {
-      rootDom.style.transform = 'scale(0.98) translateY(20px)'
+      rootDom.style.transform = 'scale(0.95) translateY(20px) perspective(1100px) rotateX(2deg)'
       rootDom.style.borderRadius = '20px'
       rootDom.style.overflow = 'hidden'
     }
