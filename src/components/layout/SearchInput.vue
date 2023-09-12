@@ -4,7 +4,7 @@ const value = ref('')
 
 <template>
   <div class="searchBar">
-    <input v-model="value" placeholder="可以输入国家 CODE 检索" class="searchText" type="text">
+    <input v-model="value" placeholder="可以输入地区 CODE 检索" class="searchText" type="text">
   </div>
 </template>
 

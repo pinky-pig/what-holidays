@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const store = useAreaStore()
+// const store = useAreaStore()
+
+const isShowLittlePanel = ref(false)
 </script>
 
 <template>
@@ -15,7 +17,7 @@ const store = useAreaStore()
     </div>
 
     <div
-      :class="store.currentArea ? 'bottom-20px' : '-bottom-full'"
+      :class="isShowLittlePanel ? 'bottom-20px' : '-bottom-full'"
       class="pointer-events-none absolute left-20px z-999 transition-all duration-700 ease-in-out"
     >
       <MonthHoliday class="pointer-events-auto" />

@@ -80,3 +80,27 @@ a.mapboxgl-ctrl-logo{
     transform: scale(1) rotate(0deg);
   }
 }
+
+@keyframes blur-show{
+  0%{
+    filter: blur(1rem);
+    opacity: 0;
+  }
+  100%{
+    filter: blur(0rem);
+    opacity: 1;
+  }
+}
+
+@keyframes blur-hide{
+  0%{
+    filter: blur(0rem);
+    opacity: 1;
+  }
+  100%{
+    filter: blur(1rem);
+    opacity: 0;
+  }
+}
+
+

@@ -80,8 +80,10 @@ function initMarkerPopup() {
         // mapInstance && store.markerPopup!.addTo(mapInstance!)
 
         const popDom = document.getElementById('customMapboxPopup')
-        if (popDom)
+        if (popDom) {
           popDom.style.zIndex = '99'
+          popDom.style.animation = 'blur-show .4s'
+        }
       }
     },
     hide() {
@@ -91,8 +93,12 @@ function initMarkerPopup() {
         // 说明已经显示了，移除
         store.markerPopup.attributes.isShow = false
         const popDom = document.getElementById('customMapboxPopup')
-        if (popDom)
-          popDom.style.zIndex = '-1'
+        if (popDom) {
+          popDom.style.animation = 'blur-hide .4s'
+          setTimeout(() => {
+            popDom.style.zIndex = '-1'
+          }, 400)
+        }
         // store.markerPopup.remove()
       }
       else {
