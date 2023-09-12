@@ -10,7 +10,7 @@
 .circle {
   width: 100px;
   height: 100px;
-  background: transparent url("http://species-in-pieces.com/img/textured-ui/threat.png") center center no-repeat;
+  background: transparent url("~/assets/img/threat.png") center center no-repeat;
   background-size: cover;
 }
 </style>

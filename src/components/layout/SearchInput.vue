@@ -15,7 +15,7 @@ const value = ref('')
   z-index: 999;
   padding: 3px;
   height: 40px;
-  background: url("http://species-in-pieces.com/img/textured-ui/popout-mid.png") repeat-x left center;
+  background: url("~/assets/img/popout-mid.png") repeat-x left center;
   background-size: contain;
 }
 
@@ -27,7 +27,7 @@ const value = ref('')
   pointer-events: none;
   top: 0;
   left: -53%;
-  background: url("http://species-in-pieces.com/img/textured-ui/popout-left.png") no-repeat center center;
+  background: url("~/assets/img/popout-left.png") no-repeat center center;
   background-size: contain;
 }
 .searchBar::after {
@@ -38,7 +38,7 @@ const value = ref('')
   pointer-events: none;
   top: 0;
   right: -53%;
-  background: url("http://species-in-pieces.com/img/textured-ui/popout-right.png") no-repeat center center;
+  background: url("~/assets/img/popout-right.png") no-repeat center center;
   background-size: contain;
 }
 .searchText{

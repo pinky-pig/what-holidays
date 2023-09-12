@@ -13,7 +13,7 @@ h2 {
   font-size: 4.35em;
   line-height: 1em;
   color: #fff;
-  background: url('http://species-in-pieces.com/img/textured-ui/repeat-white.png') center center repeat;
+  background: url('~/assets/img/repeat-white.png') center center repeat;
   background-size: 80px 60px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

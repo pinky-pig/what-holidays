@@ -72,56 +72,61 @@ function closeMarkerPopup() {
     </div>
     <ScratchyBorder>
       <div class="popup">
-        <!-- 今天是节假日吗 -->
-        <div v-if="isHolidayInNow" class="flex flex-shrink-0 flex-row items-start gap-2">
-          <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:beaming-face-with-smiling-eyes />
-          <div class="w-36px flex-shrink-0 leading-5">
-            今天：
+        <div class="relative z-999">
+          <!-- 今天是节假日吗 -->
+          <div v-if="isHolidayInNow" class="flex flex-shrink-0 flex-row items-start gap-2">
+            <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:beaming-face-with-smiling-eyes />
+            <div class="w-36px flex-shrink-0 leading-5">
+              今天：
+            </div>
+            <div class="flex">
+              {{ isHolidayInNow[0].name }}
+            </div>
           </div>
-          <div class="flex">
-            {{ isHolidayInNow[0].name }}
+          <div v-else class="flex flex-row items-center gap-2">
+            <div class="h-20px w-16px" i-fluent-emoji:loudly-crying-face />
+            <p class="leading-5">
+              今天没有放假
+            </p>
           </div>
-        </div>
-        <div v-else class="flex flex-row items-center gap-2">
-          <div class="h-20px w-16px" i-fluent-emoji:loudly-crying-face />
-          <p class="leading-5">
-            今天没有放假
-          </p>
-        </div>
-        <!-- 这个月有节假日吗 -->
-        <div v-if="holidayInMonth" class="flex flex-row items-start gap-2">
-          <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
-          <div class="w-36px flex-shrink-0 leading-5">
-            本月：
+          <!-- 这个月有节假日吗 -->
+          <div v-if="holidayInMonth" class="pointer-events-auto flex flex-row cursor-pointer items-start gap-2">
+            <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
+            <div class="w-36px flex-shrink-0 leading-5">
+              本月：
+            </div>
+            <div class="flex flex-row flex-wrap">
+              <p v-for="item in holidayInMonth" :key="item.name">
+                {{ item.name }}&nbsp;
+              </p>
+            </div>
           </div>
-          <div class="flex flex-row flex-wrap">
-            <p v-for="item in holidayInMonth" :key="item.name">
-              {{ item.name }}&nbsp;
+          <div v-else class="flex flex-row items-center gap-2">
+            <div class="h-20px w-16px" i-fluent-emoji:face-with-spiral-eyes />
+            <div> 这个月没有节假日了 </div>
+          </div>
+
+          <!-- 最近的下个节日 -->
+          <div v-if="nextHoliday" class="flex flex-row items-start gap-2">
+            <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
+
+            <div class="w-36px flex-shrink-0 leading-5">
+              下个：
+            </div>
+            <div class="flex">
+              {{ nextHoliday.name }}
+            </div>
+          </div>
+          <div v-else class="flex flex-row items-center gap-2">
+            <div class="h-20px w-16px" i-fluent-emoji:face-holding-back-tears />
+            <p class="leading-5">
+              今年没有节假日了
             </p>
           </div>
         </div>
-        <div v-else class="flex flex-row items-center gap-2">
-          <div class="h-20px w-16px" i-fluent-emoji:face-with-spiral-eyes />
-          <div> 这个月没有节假日了 </div>
-        </div>
 
-        <!-- 最近的下个节日 -->
-        <div v-if="nextHoliday" class="flex flex-row items-start gap-2">
-          <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
-
-          <div class="w-36px flex-shrink-0 leading-5">
-            下个：
-          </div>
-          <div class="flex">
-            {{ nextHoliday.name }}
-          </div>
-        </div>
-        <div v-else class="flex flex-row items-center gap-2">
-          <div class="h-20px w-16px" i-fluent-emoji:face-holding-back-tears />
-          <p class="leading-5">
-            今年没有节假日了
-          </p>
-        </div>
+        <!-- 弹出按钮 -->
+        <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
       </div>
     </ScratchyBorder>
     <div class="mt-2px w-full flex items-center justify-center text-center">
