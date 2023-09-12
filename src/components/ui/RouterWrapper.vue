@@ -20,6 +20,25 @@ function closeAndToHome() {
     router.go(-1)
   }, 500)
 }
+
+// 给父盒子变形使用
+// watch(() => route.fullPath, (v) => {
+//   const rootDom = document.querySelector('#appRoot') as HTMLElement
+//   if (v === '/area') {
+//     if (rootDom) {
+//       rootDom.style.transform = 'scale(0.95) translateY(20px)'
+//       rootDom.style.borderRadius = '20px'
+//       rootDom.style.overflow = 'hidden'
+//     }
+//   }
+//   else {
+//     if (rootDom) {
+//       rootDom.style.borderRadius = ''
+//       rootDom.style.overflow = ''
+//       rootDom.style.transform = ''
+//     }
+//   }
+// })
 </script>
 
 <template>
@@ -32,20 +51,17 @@ function closeAndToHome() {
         <div class="flex items-center justify-between gap-2">
           <div class="flex items-center gap-4">
             <div class="return-arrow" @click="closeAndToHome">
-              <div i-carbon:direction-loop-left />
+              <div i-carbon:close />
             </div>
             <span>
               <slot name="title" />
             </span>
           </div>
-          <div class="flex items-center justify-end gap-2">
-            <div i-carbon:moon />
-          </div>
         </div>
       </nav>
-      <main class="flex-1 flex-grow-2 overflow-auto bg-[#ffffff] p-4">
+      <div class="flex-1 flex-grow-2 overflow-auto bg-[#ffffff] p-4">
         <slot />
-      </main>
+      </div>
       <div class="bg-[#ffffff]">
         <slot name="bottom" />
       </div>
@@ -64,16 +80,16 @@ function closeAndToHome() {
   align-items: center;
   width: 36px;
   height: 36px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 18px;
   color: #f0f2f8;
-  background: #0D1117;
-  box-shadow: #30363D 0px 0px 0px 2px;
+  background: #944DFE;
+  box-shadow: #944DFE 0px 0px 0px 2px;
   transition: box-shadow 0.2s ease-out 0s;
 }
 .return-arrow:hover{
   cursor: pointer;
-  box-shadow: #30363D 0px 0px 0px 5px;
+  box-shadow: #944DFE90 0px 0px 0px 5px;
 }
 
 .bubbleCardDown{

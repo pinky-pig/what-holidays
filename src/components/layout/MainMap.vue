@@ -7,26 +7,7 @@ import LOCATIONS from '~/assets/json/location.json'
 import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 
 const router = useRouter()
-const route = useRoute()
 const store = useAreaStore()
-
-watch(() => route.fullPath, (v) => {
-  const rootDom = document.querySelector('#appRoot') as HTMLElement
-  if (v === '/area') {
-    if (rootDom) {
-      rootDom.style.transform = 'scale(0.95) translateY(20px) perspective(1100px) rotateX(2deg)'
-      rootDom.style.borderRadius = '20px'
-      rootDom.style.overflow = 'hidden'
-    }
-  }
-  else {
-    if (rootDom) {
-      rootDom.style.borderRadius = ''
-      rootDom.style.overflow = ''
-      rootDom.style.transform = ''
-    }
-  }
-})
 
 const hd = new Holidays()
 /**
