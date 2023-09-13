@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import Holidays from 'date-holidays'
 import dayjs from 'dayjs'
+import { Pane, Splitpanes } from 'splitpanes'
 import RouterWrapper from '../../components/ui/RouterWrapper.vue'
-import YearCalendar from './components/Year.vue'
-import HolidayList from './components/List.vue'
+
+// import YearCalendar from './components/Year.vue'
+// import HolidayList from './components/List.vue'
 import type { Holiday } from '~/types/holiday'
+
+const isHorizontal = ref(false)
 
 const route = useRoute()
 // const store = useAreaStore()
@@ -28,7 +32,7 @@ function getYearHolidays(year: number) {
   return days
 }
 
-const isShowList = ref(false)
+// const isShowList = ref(false)
 </script>
 
 <template>
@@ -38,12 +42,31 @@ const isShowList = ref(false)
     </template> -->
 
     <!-- 左右两侧，左侧文字，右侧全年日历。响应式先显示文字再显示日历 -->
-    <div class="h-auto w-full flex flex-col gap-10px rounded-3xl bg-[var(--card--placeholder-bg)]">
+    <!-- <div class="h-auto w-full flex flex-col gap-10px rounded-3xl bg-[var(--card--placeholder-bg)]">
       <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
         <HolidayList v-show="isShowList" :holidays="holidays" />
 
         <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
       </div>
-    </div>
+    </div> -->
+    <Splitpanes class="default-theme">
+      <Pane>
+        <Splitpanes
+          :horizontal="isHorizontal"
+          class="default-theme"
+        >
+          <Pane>
+            <Container title="列表">
+              <!-- <HolidayList v-show="isShowList" :holidays="holidays" /> -->
+            </Container>
+          </Pane>
+          <Pane size="300">
+            <Container title="日历">
+              <!-- <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" /> -->
+            </Container>
+          </Pane>
+        </Splitpanes>
+      </Pane>
+    </Splitpanes>
   </RouterWrapper>
 </template>

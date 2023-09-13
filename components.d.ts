@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Alert: typeof import('./src/components/ui/Alert.vue')['default']
     AreaList: typeof import('./src/components/layout/AreaList.vue')['default']
+    AreaPlayground: typeof import('./src/components/layout/AreaPlayground.vue')['default']
     Background: typeof import('./src/components/ui/Background.vue')['default']
     BorderBackground: typeof import('./src/components/ui/BorderBackground.vue')['default']
     Calendar: typeof import('./src/components/ui/Calendar/index.vue')['default']
@@ -17,6 +18,7 @@ declare module 'vue' {
     Code: typeof import('./src/components/layout/Code.vue')['default']
     ColorPicker: typeof import('./src/components/ui/ColorPicker.vue')['default']
     ConfettiCanvas: typeof import('./src/components/ui/ConfettiCanvas.vue')['default']
+    Container: typeof import('./src/components/ui/Container.vue')['default']
     copy: typeof import('./src/components/layout/ScratchySearchInput copy.vue')['default']
     CTable: typeof import('./src/components/ui/CTable.vue')['default']
     CustomMapboxPopup: typeof import('./src/components/ui/CustomMapboxPopup.vue')['default']

@@ -26,6 +26,7 @@
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
     "prismjs": "^1.29.0",
+    "splitpanes": "^3.1.5",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
     "zipson": "^0.2.12"
@@ -40,6 +41,7 @@
     "@types/mapbox-gl": "^2.7.13",
     "@types/node": "^20.5.9",
     "@types/prismjs": "^1.26.0",
+    "@types/splitpanes": "^2.2.1",
     "@unocss/eslint-config": "^0.55.7",
     "@unocss/reset": "^0.55.7",
     "@vitejs/plugin-vue": "^4.3.4",
