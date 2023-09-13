@@ -28,7 +28,7 @@ function closeAndToHome() {
     class="wrapper fixed left-0 top-0 z-50 z-999 h-screen w-screen flex flex-col"
   >
     <div class="h-60px w-full flex-shrink-0" @click="closeAndToHome" />
-    <div class="h-[calc(100%_-_60px)]] w-full flex flex-col" style="height: calc(100% - 60px);">
+    <div class="wrapper-content w-full flex flex-col" style="height: calc(100% - 60px);">
       <nav class="h-60px rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
         <div class="flex items-center justify-between gap-2">
           <div class="flex items-center gap-4">
@@ -49,7 +49,7 @@ function closeAndToHome() {
 </template>
 
 <style scoped>
-.wrapper{
+.wrapper-content{
   mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%;
   -webkit-mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%;
 }
