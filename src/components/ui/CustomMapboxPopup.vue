@@ -76,6 +76,11 @@ function goArea() {
     </div>
     <ScratchyBorder>
       <div class="popup">
+        <div class="mb-2 cursor-pointer underline underline-offset-6 underline-dashed hover:text-[#c4c7ff]" @click="goArea()">
+          {{ store.currentArea?.name }}
+        </div>
+        <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
+
         <div class="relative z-999">
           <!-- 今天是节假日吗 -->
           <div v-if="isHolidayInNow" class="flex flex-shrink-0 flex-row items-start gap-2">
@@ -130,11 +135,11 @@ function goArea() {
         </div>
 
         <!-- 弹出按钮 -->
-        <div class="my-3 h-1px w-full border border-white border-dashed" />
+        <!-- <div class="my-3 h-1px w-full border border-white border-dashed" />
 
         <div class="relative h-20px w-full cursor-pointer rounded-md text-center text-[#944DFE] z-999! bg-white!" @click="goArea()">
           详情
-        </div>
+        </div> -->
       </div>
     </ScratchyBorder>
     <div class="mt-2px w-full flex items-center justify-center text-center">

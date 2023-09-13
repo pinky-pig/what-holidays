@@ -28,12 +28,6 @@ function getYearHolidays(year: number) {
   return days
 }
 
-// onMounted(() => {
-//   setTimeout(() => {
-//     currentYear.value = 2022
-//   }, 3000)
-// })
-
 const isShowList = ref(false)
 </script>
 
@@ -43,14 +37,8 @@ const isShowList = ref(false)
       {{ store.currentArea?.name || "Area" }}
     </template> -->
 
+    <!-- 左右两侧，左侧文字，右侧全年日历。响应式先显示文字再显示日历 -->
     <div class="h-auto w-full flex flex-col gap-10px rounded-3xl bg-[var(--card--placeholder-bg)]">
-      <button
-        type="button"
-        class="w-100px btn"
-        @click="isShowList = !isShowList"
-      >
-        Button
-      </button>
       <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
         <HolidayList v-show="isShowList" :holidays="holidays" />
 
