@@ -25,11 +25,11 @@ function closeAndToHome() {
 <template>
   <div
     :class="isOpen ? 'bubbleCardUp' : 'bubbleCardDown'"
-    class="wrapper fixed bottom-0 left-0 right-0 top-0 z-50 z-999 flex flex-col"
+    class="wrapper fixed left-0 top-0 z-50 z-999 h-screen w-screen flex flex-col"
   >
     <div class="h-60px w-full flex-shrink-0" @click="closeAndToHome" />
-    <div class="h-full w-full flex flex-col">
-      <nav class="overflow-hidden rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
+    <div class="h-[calc(100%_-_60px)]] w-full flex flex-col" style="height: calc(100% - 60px);">
+      <nav class="h-60px rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
         <div class="flex items-center justify-between gap-2">
           <div class="flex items-center gap-4">
             <div class="return-arrow" @click="closeAndToHome">
@@ -41,13 +41,8 @@ function closeAndToHome() {
           </div>
         </div>
       </nav>
-      <div class="flex-1 flex-grow-2 overflow-auto bg-[#ffffff] p-4">
-        <main class="h-full w-full overflow-hidden rounded-lg">
-          <slot />
-        </main>
-      </div>
-      <div class="bg-[#ffffff]">
-        <slot name="bottom" />
+      <div class="flex-1 overflow-auto bg-[#ffffff] p-4">
+        <slot />
       </div>
     </div>
   </div>

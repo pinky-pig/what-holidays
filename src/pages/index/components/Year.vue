@@ -19,16 +19,17 @@ const months = Array(12)
   <div
     class="year-container h-full max-w-1300px w-full gap-10px rounded-md bg-[#eee] p-10px"
   >
-    <Calendar
-      v-for="(_item, index) in months"
-      :key="index"
-      :header-option="{
-        showYear: false,
-        showMonth: true,
-        switchMonth: false,
-      }"
-      :current-date="new Date(`${currentYear}-${index + 1}-01`)" :holidays="holidays"
-    />
+    <div v-for="(_item, index) in months" :key="index">
+      <Calendar
+        :header-option="{
+          showYear: false,
+          showMonth: true,
+          switchMonth: false,
+        }"
+        :current-date="new Date(`${currentYear}-${index + 1}-01`)"
+        :holidays="holidays"
+      />
+    </div>
   </div>
 </template>
 

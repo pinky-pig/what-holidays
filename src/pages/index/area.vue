@@ -4,7 +4,8 @@ import dayjs from 'dayjs'
 import { Pane, Splitpanes } from 'splitpanes'
 import RouterWrapper from '../../components/ui/RouterWrapper.vue'
 
-// import YearCalendar from './components/Year.vue'
+import YearCalendar from './components/Year.vue'
+
 // import HolidayList from './components/List.vue'
 import type { Holiday } from '~/types/holiday'
 
@@ -32,7 +33,7 @@ function getYearHolidays(year: number) {
   return days
 }
 
-// const isShowList = ref(false)
+const isShowList = ref(false)
 </script>
 
 <template>
@@ -56,13 +57,11 @@ function getYearHolidays(year: number) {
           class="default-theme"
         >
           <Pane>
-            <Container title="列表">
-              <!-- <HolidayList v-show="isShowList" :holidays="holidays" /> -->
-            </Container>
+            <Container title="列表" />
           </Pane>
           <Pane size="300">
             <Container title="日历">
-              <!-- <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" /> -->
+              <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
             </Container>
           </Pane>
         </Splitpanes>
