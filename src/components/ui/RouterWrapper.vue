@@ -20,38 +20,20 @@ function closeAndToHome() {
     router.go(-1)
   }, 500)
 }
-
-// 给父盒子变形使用
-// watch(() => route.fullPath, (v) => {
-//   const rootDom = document.querySelector('#appRoot') as HTMLElement
-//   if (v === '/area') {
-//     if (rootDom) {
-//       rootDom.style.transform = 'scale(0.95) translateY(20px)'
-//       rootDom.style.borderRadius = '20px'
-//       rootDom.style.overflow = 'hidden'
-//     }
-//   }
-//   else {
-//     if (rootDom) {
-//       rootDom.style.borderRadius = ''
-//       rootDom.style.overflow = ''
-//       rootDom.style.transform = ''
-//     }
-//   }
-// })
 </script>
 
 <template>
   <div
     :class="isOpen ? 'bubbleCardUp' : 'bubbleCardDown'"
-    class="fixed bottom-0 left-0 right-0 top-0 z-50 z-999 flex flex-col"
+    class="wrapper fixed bottom-0 left-0 right-0 top-0 z-50 z-999 flex flex-col"
   >
-    <div class="h-full w-full flex flex-col pt-60px">
+    <div class="h-60px w-full flex-shrink-0" @click="closeAndToHome" />
+    <div class="h-full w-full flex flex-col">
       <nav class="overflow-hidden rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
         <div class="flex items-center justify-between gap-2">
           <div class="flex items-center gap-4">
             <div class="return-arrow" @click="closeAndToHome">
-              <div i-carbon:close />
+              <div i-carbon:chevron-down />
             </div>
             <span>
               <slot name="title" />
@@ -70,6 +52,10 @@ function closeAndToHome() {
 </template>
 
 <style scoped>
+.wrapper{
+  mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%;
+  -webkit-mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%;
+}
 .bubbleCardUp{
   animation: slide-up .6s ease-in-out;
 }
@@ -83,13 +69,13 @@ function closeAndToHome() {
   font-size: 16px;
   border-radius: 18px;
   color: #f0f2f8;
-  background: #944DFE;
-  box-shadow: #944DFE 0px 0px 0px 2px;
+  background: #2a2f37;
+  box-shadow: #2a2f37 0px 0px 0px 2px;
   transition: box-shadow 0.2s ease-out 0s;
 }
 .return-arrow:hover{
   cursor: pointer;
-  box-shadow: #944DFE90 0px 0px 0px 5px;
+  box-shadow: #2a2f37b0 0px 0px 0px 5px;
 }
 
 .bubbleCardDown{

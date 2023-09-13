@@ -2,6 +2,34 @@
 // const store = useAreaStore()
 
 const isShowLittlePanel = ref(false)
+
+// 给父盒子变形使用
+const route = useRoute()
+watch(() => route.fullPath, (v) => {
+  setAppRootScale(v)
+})
+
+onMounted(() => {
+  setAppRootScale(route.fullPath)
+})
+
+function setAppRootScale(v: string) {
+  const rootDom = document.querySelector('#appRoot') as HTMLElement
+  if (v === '/area') {
+    if (rootDom) {
+      rootDom.style.transform = 'scale(0.95) translateY(20px)'
+      rootDom.style.borderRadius = '20px'
+      rootDom.style.overflow = 'hidden'
+    }
+  }
+  else {
+    if (rootDom) {
+      rootDom.style.borderRadius = ''
+      rootDom.style.overflow = ''
+      rootDom.style.transform = ''
+    }
+  }
+}
 </script>
 
 <template>

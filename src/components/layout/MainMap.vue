@@ -8,6 +8,7 @@ import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 import ScratchyModal from '~/components/ui/ScratchyModal.vue'
 
 const store = useAreaStore()
+const router = useRouter()
 
 const hd = new Holidays()
 
@@ -15,9 +16,9 @@ const hd = new Holidays()
  * 定义弹窗
  */
 const $ScratchyModal = ref<typeof ScratchyModal | null>(null)
-function open() {
-  $ScratchyModal.value!.open()
-}
+// function open() {
+//   $ScratchyModal.value!.open()
+// }
 
 /**
  * 初始化地区数据
@@ -146,8 +147,8 @@ function initUserPosition() {
 
       marker.getElement().addEventListener('click', (e) => {
         // 在这里执行您希望的点击事件处理逻辑
-        // router.push('/area')
-        open()
+        router.push('/area')
+        // open()
       })
 
       mapInstance!.flyTo({

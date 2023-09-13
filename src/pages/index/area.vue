@@ -7,7 +7,7 @@ import HolidayList from './components/List.vue'
 import type { Holiday } from '~/types/holiday'
 
 const route = useRoute()
-const store = useAreaStore()
+// const store = useAreaStore()
 
 const currentArea = ref(route.query.code as string)
 const currentYear = ref(dayjs(new Date()).year())
@@ -34,14 +34,14 @@ function getYearHolidays(year: number) {
 //   }, 3000)
 // })
 
-const isShowList = ref(true)
+const isShowList = ref(false)
 </script>
 
 <template>
   <RouterWrapper>
-    <template #title>
+    <!-- <template #title>
       {{ store.currentArea?.name || "Area" }}
-    </template>
+    </template> -->
 
     <div class="h-auto w-full flex flex-col gap-10px rounded-3xl bg-[var(--card--placeholder-bg)]">
       <button
