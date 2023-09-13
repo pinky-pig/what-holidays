@@ -6,7 +6,7 @@ defineProps<{ title?: string; noOverflow?: boolean; noRounding?: boolean }>()
   <div
     h="full"
     grid="~"
-    border="1 light-900 dark:dark-400"
+    border="1 light-900 "
     shadow="lg"
     :style="{ gridTemplateRows: title ? 'min-content auto' : 'auto' }"
     :class="noRounding ? 'border-t-0' : 'rounded-md'"
@@ -16,8 +16,8 @@ defineProps<{ title?: string; noOverflow?: boolean; noRounding?: boolean }>()
       flex="~ row"
       text="xs"
       items="center"
-      bg="light-500 dark:dark-800"
-      border="b-1 dark:dark-400 light-900"
+      bg="light-500 "
+      border="b-1 light-900"
       p="l-2"
       h="8"
       :class="noRounding ? '' : 'rounded-t-md'"
@@ -30,7 +30,7 @@ defineProps<{ title?: string; noOverflow?: boolean; noRounding?: boolean }>()
       </div>
     </div>
     <div
-      bg="dark:dark-800 light-300"
+      bg=" light-300"
       position="relative"
       border="rounded-b-md"
       w="full"

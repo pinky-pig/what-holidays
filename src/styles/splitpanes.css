@@ -24,9 +24,13 @@
 .dark .splitpanes.default-theme .splitpanes__splitter::before,
 .dark .splitpanes.default-theme .splitpanes__splitter::after {
   background-color: rgba(60, 60, 60, 1);
+  background-color: rgba(252, 252, 252, 1);
+
 }
 
 .dark .splitpanes.default-theme .splitpanes__splitter:hover::before,
 .dark .splitpanes.default-theme .splitpanes__splitter:hover::after {
   background-color: rgba(60, 60, 60, 1);
+  background-color: rgba(252, 252, 252, 1);
+
 }
