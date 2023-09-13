@@ -25,6 +25,10 @@
 <!-- ![20230901161725](https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230901161725.png) -->
 
 
+- pinia-plugin-persistedstate
+
+在使用 pinia 过程中，如果是 setup 的写法， state 需要定义成响应式的，否则持久化不生效
+
 ```ts
 // Vue3 弹窗双向绑定
 const el = document.createElement('div')

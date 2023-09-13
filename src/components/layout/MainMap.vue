@@ -118,7 +118,7 @@ function initMarkerPopup() {
           popDom.style.animation = 'blur-hide .4s'
           setTimeout(() => {
             popDom.style.zIndex = '-1'
-          }, 400)
+          }, 300)
         }
         // store.markerPopup.remove()
       }

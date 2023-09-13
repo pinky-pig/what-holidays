@@ -24,10 +24,11 @@
     "mapbox-gl": "^2.15.0",
     "naive-ui": "^2.34.4",
     "pinia": "^2.1.6",
-    "pinia-plugin-persist": "^1.0.0",
+    "pinia-plugin-persistedstate": "^3.2.0",
     "prismjs": "^1.29.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "zipson": "^0.2.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.0",

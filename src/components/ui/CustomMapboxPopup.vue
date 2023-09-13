@@ -63,6 +63,10 @@ function closeMarkerPopup() {
   store.markerPopup!.attributes.hide()
   store.currentArea = null
 }
+
+function goArea() {
+  store.goRouter('/area')
+}
 </script>
 
 <template>
@@ -125,8 +129,12 @@ function closeMarkerPopup() {
           </div>
         </div>
 
-      <!-- 弹出按钮 -->
-      <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
+        <!-- 弹出按钮 -->
+        <div class="my-3 h-1px w-full border border-white border-dashed" />
+
+        <div class="relative h-20px w-full cursor-pointer rounded-md text-center text-[#944DFE] z-999! bg-white!" @click="goArea()">
+          详情
+        </div>
       </div>
     </ScratchyBorder>
     <div class="mt-2px w-full flex items-center justify-center text-center">

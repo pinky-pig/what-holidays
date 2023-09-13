@@ -25,6 +25,7 @@
   border-radius: 15px;
   overflow: hidden;
   padding: 10px;
+  z-index: 99;
   /* background: url('http://species-in-pieces.com/img/textured-ui/repeat-white.png') center center repeat;
   background-size: 80px 60px; */
 }
@@ -71,6 +72,7 @@
   left: 10px;
   top: 11px;
   z-index: 99;
+  pointer-events: none;
 }
 
 .scratchyBorder .corners div:nth-child(1)::after {

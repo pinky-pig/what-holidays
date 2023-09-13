@@ -11,7 +11,7 @@ import 'leaflet/dist/leaflet.css'
 import '~/components/lit'
 
 import { createPinia } from 'pinia'
-import piniaPluginPersist from 'pinia-plugin-persist'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -19,9 +19,9 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
-const store = createPinia()
-store.use(piniaPluginPersist)
-app.use(store)
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
 
 app.use(MotionPlugin)
 app.use(router)
