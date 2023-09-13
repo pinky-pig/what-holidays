@@ -125,8 +125,8 @@ function closeMarkerPopup() {
           </div>
         </div>
 
-        <!-- 弹出按钮 -->
-        <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
+      <!-- 弹出按钮 -->
+      <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
       </div>
     </ScratchyBorder>
     <div class="mt-2px w-full flex items-center justify-center text-center">
@@ -179,5 +179,10 @@ function closeMarkerPopup() {
   color: white;
   background: #944DFE;
   backdrop-filter: blur(10px);
+  /* border:6px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+  mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%;
+  -webkit-mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%; */
 }
 </style>
