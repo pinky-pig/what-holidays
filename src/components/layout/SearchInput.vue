@@ -1,7 +1,23 @@
 <script setup lang="ts">
+import type { AllAreaType } from '~/store/area'
+
+const store = useAreaStore()
+
 const value = ref('')
 const isShowSelectMenu = ref(false)
-const $searchBar = ref<HTMLElement | null>(null)
+const $searchBar = ref<HTMLElement | null>(null) // onClickOutside，可以不定义，传 DOM ID
+
+const filterClosedAreas = ref<AllAreaType[]>([])
+watch(value, (v) => {
+  filterClosedAreas.value = filteredCountries(v, store.allAreas)
+})
+
+function filteredCountries(text: string, allAreas: AllAreaType[]) {
+  // 使用 filter 方法来过滤匹配搜索关键词的对象
+  return allAreas.filter(country =>
+    country.name.includes(text),
+  )
+}
 </script>
 
 <template>
@@ -18,6 +34,7 @@ const $searchBar = ref<HTMLElement | null>(null)
     <SelectMenu
       v-model="isShowSelectMenu"
       :ignore-element="$searchBar"
+      :list-data="filterClosedAreas"
     />
   </div>
 </template>
