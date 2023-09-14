@@ -44,6 +44,7 @@ declare module 'vue' {
     ScratchySearchInput: typeof import('./src/components/layout/ScratchySearchInput.vue')['default']
     ScratchyText: typeof import('./src/components/ui/ScratchyText.vue')['default']
     SearchInput: typeof import('./src/components/layout/SearchInput.vue')['default']
+    SelectMenu: typeof import('./src/components/ui/SelectMenu.vue')['default']
     TextareaCode: typeof import('./src/components/ui/TextareaCode.vue')['default']
     Tools: typeof import('./src/components/layout/Tools.vue')['default']
     WeekName: typeof import('./src/components/ui/Calendar/WeekName.vue')['default']

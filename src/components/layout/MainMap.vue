@@ -35,6 +35,10 @@ const areas = computed(() => {
   return countriesArray
 })
 
+watchEffect(() => {
+  store.allAreas = areas.value
+})
+
 /**
  * 地图加载完成
  */
