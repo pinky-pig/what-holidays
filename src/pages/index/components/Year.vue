@@ -27,7 +27,8 @@ const months = Array(12)
         showMonth: true,
         switchMonth: false,
       }"
-      :current-date="new Date(`${currentYear}-${index + 1}-01`)" :holidays="holidays"
+      :current-date="new Date(`${currentYear}-${index + 1}-01`)"
+      :holidays="holidays"
       class="w-300px! transition-all! duration-300! ease-in-out!"
     />
   </div>

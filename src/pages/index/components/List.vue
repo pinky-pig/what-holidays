@@ -19,18 +19,29 @@ const formatHolidays = computed(() => {
     }
   })
 })
+
+function handleSelectHoliday(item: typeof formatHolidays.value[0]) {
+  // eslint-disable-next-line no-console
+  console.log(item)
+}
 </script>
 
 <template>
   <div
-    class="h-full max-w-1300px w-full gap-10px rounded-md bg-[#eee] p-10px md:grid-cols-4 sm:grid-cols-2"
+    class="h-full max-w-1300px w-full gap-10px bg-[#eee] p-10px md:grid-cols-4 sm:grid-cols-2"
   >
     <!-- list -->
-
-    <div v-for="item in formatHolidays" :key="item.date" class="mb-2 border border-black">
-      date: {{ item.date }}
-      <br>
-      name: {{ item.name }}
+    <div
+      v-for="item in formatHolidays"
+      :key="item.name"
+      class="mb-2 cursor-pointer rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      @click="handleSelectHoliday(item)"
+    >
+      <div>
+        <span class="text-14px font-bold"> {{ item.name }}</span>
+        <br>
+        <span class="text-12px"> {{ item.date }}</span>
+      </div>
     </div>
   </div>
 </template>

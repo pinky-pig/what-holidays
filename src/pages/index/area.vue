@@ -12,7 +12,6 @@ import type { Holiday } from '~/types/holiday'
 const isHorizontal = ref(false)
 
 const route = useRoute()
-// const store = useAreaStore()
 
 const currentArea = ref(route.query.code as string)
 const currentYear = ref(dayjs(new Date()).year())
@@ -45,7 +44,7 @@ const isShowList = ref(false)
           class="default-theme"
         >
           <Pane>
-            <Container title="列表">
+            <Container title="节日">
               <HolidayList :holidays="holidays" />
             </Container>
           </Pane>
