@@ -44,6 +44,10 @@ function setAppRootScale(v: string) {
       <!-- <SearchInput class="pointer-events-auto" /> -->
     </div>
 
+    <div class="pointer-events-none absolute top-30px z-999 w-full flex flex-row items-center justify-start">
+      <AreaList class="pointer-events-auto" />
+    </div>
+
     <div
       :class="isShowLittlePanel ? 'bottom-20px' : '-bottom-full'"
       class="pointer-events-none absolute left-20px z-999 transition-all duration-700 ease-in-out"
