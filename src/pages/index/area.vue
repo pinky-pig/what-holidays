@@ -5,8 +5,8 @@ import { Pane, Splitpanes } from 'splitpanes'
 import RouterWrapper from '../../components/ui/RouterWrapper.vue'
 
 import YearCalendar from './components/Year.vue'
+import HolidayList from './components/List.vue'
 
-// import HolidayList from './components/List.vue'
 import type { Holiday } from '~/types/holiday'
 
 const isHorizontal = ref(false)
@@ -38,18 +38,6 @@ const isShowList = ref(false)
 
 <template>
   <RouterWrapper>
-    <!-- <template #title>
-      {{ store.currentArea?.name || "Area" }}
-    </template> -->
-
-    <!-- 左右两侧，左侧文字，右侧全年日历。响应式先显示文字再显示日历 -->
-    <!-- <div class="h-auto w-full flex flex-col gap-10px rounded-3xl bg-[var(--card--placeholder-bg)]">
-      <div class="grid h-auto w-full place-items-center rounded-3xl text-black">
-        <HolidayList v-show="isShowList" :holidays="holidays" />
-
-        <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
-      </div>
-    </div> -->
     <Splitpanes class="default-theme">
       <Pane>
         <Splitpanes
@@ -57,7 +45,9 @@ const isShowList = ref(false)
           class="default-theme"
         >
           <Pane>
-            <Container title="列表" />
+            <Container title="列表">
+              <HolidayList :holidays="holidays" />
+            </Container>
           </Pane>
           <Pane size="300">
             <Container title="日历">

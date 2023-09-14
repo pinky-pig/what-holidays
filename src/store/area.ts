@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type { RouteLocationRaw } from 'vue-router'
 import { parse, stringify } from 'zipson'
 import type { AreaType, IPopup } from '~/types'
 
@@ -32,8 +33,8 @@ export const useAreaStore = defineStore(
     const currentLanguage = ref('')
 
     // 路由跳转，popup 使用 createApp()
-    function goRouter(routerPath: string) {
-      router.push(routerPath)
+    function goRouter(options: RouteLocationRaw) {
+      router.push(options)
     }
 
     return {

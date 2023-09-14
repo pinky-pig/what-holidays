@@ -41,7 +41,7 @@ function setAppRootScale(v: string) {
     </BorderBackground>
 
     <div class="pointer-events-none absolute top-30px z-999 w-full flex items-center justify-center">
-      <SearchInput class="pointer-events-auto" />
+      <!-- <SearchInput class="pointer-events-auto" /> -->
     </div>
 
     <div

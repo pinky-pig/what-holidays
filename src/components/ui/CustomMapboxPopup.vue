@@ -65,7 +65,14 @@ function closeMarkerPopup() {
 }
 
 function goArea() {
-  store.goRouter('/area')
+  if (store.currentArea) {
+    store.goRouter({
+      path: '/area',
+      query: {
+        code: store.currentArea.code,
+      },
+    })
+  }
 }
 </script>
 
