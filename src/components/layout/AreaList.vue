@@ -68,12 +68,10 @@ watch(isExpand, async (v) => {
       areaListContainerMotionInstance.apply('enter'),
     ]
     await Promise.all(enterPromises)
-
-    // await areaListContainerMotionInstance.apply('enter')
     await areaListBoxMotionInstance.apply('enter')
   }
   else {
-    areaListBoxMotionInstance.apply('initial')
+    await areaListBoxMotionInstance.apply('initial')
     areaListContainerMotionInstance.apply('initial')
     circleLineMotionInstance.apply('initial')
     inputMotionInstance.apply('initial')
