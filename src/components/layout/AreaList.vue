@@ -1,16 +1,91 @@
 <script setup lang="ts">
+import { useMotion } from '@vueuse/motion'
+
 const store = useAreaStore()
 
 const areas = computed(() => store.allAreas || [])
 const value = ref('')
+
+// 这里隐藏的时候，设置 opacity: 0; pointer-events: none;
 // 打开动画是先扩展，然后 blur 显示
 // 关闭动画是先 blur 隐藏，然后收缩
 const isExpand = ref(false)
+
+const $areaListContainer = ref<HTMLElement | null>(null)
+const $areaListBox = ref<HTMLElement | null>(null)
+const $input = ref<HTMLElement | null>(null)
+const $circleLine = ref<HTMLElement | null>(null)
+
+const areaListContainerMotionInstance = useMotion($areaListContainer, {
+  initial: {
+    'opacity': 0,
+    'scale': 0,
+    'transform-origin': 'top left',
+    'pointerEvents': 'none',
+  },
+  enter: {
+    opacity: 1,
+    scale: 1,
+    pointerEvents: 'auto',
+  },
+})
+const areaListBoxMotionInstance = useMotion($areaListBox, {
+  initial: {
+    opacity: 0,
+    filter: ' blur(1rem)',
+  },
+  enter: {
+    opacity: 1,
+    filter: ' blur(0rem)',
+  },
+})
+const inputMotionInstance = useMotion($input, {
+  initial: {
+    x: -330,
+    opacity: 0,
+    pointerEvents: 'none',
+  },
+  enter: {
+    x: 0,
+    opacity: 1,
+    pointerEvents: 'auto',
+  },
+})
+const circleLineMotionInstance = useMotion($circleLine, {
+  initial: {
+    y: -27,
+  },
+  enter: {
+    y: 0,
+  },
+})
+
+watch(isExpand, async (v) => {
+  if (v) {
+    const enterPromises = [
+      inputMotionInstance.apply('enter'),
+      circleLineMotionInstance.apply('enter'),
+      areaListContainerMotionInstance.apply('enter'),
+    ]
+    await Promise.all(enterPromises)
+
+    // await areaListContainerMotionInstance.apply('enter')
+    await areaListBoxMotionInstance.apply('enter')
+  }
+  else {
+    areaListBoxMotionInstance.apply('initial')
+    areaListContainerMotionInstance.apply('initial')
+    circleLineMotionInstance.apply('initial')
+    inputMotionInstance.apply('initial')
+  }
+}, {
+  immediate: true,
+})
 </script>
 
 <template>
   <div
-    class="area-list-container relative max-h-0 flex flex-col gap-4 p-4 transition-all duration-800"
+    class="area-list-container relative flex flex-col p-4"
   >
     <!-- 最小化 -->
     <div
@@ -20,11 +95,10 @@ const isExpand = ref(false)
       <div class="h-38px w-38px flex flex-row items-center justify-center rounded-full bg-[#944DFEc0]">
         <div i-fluent-emoji:magnifying-glass-tilted-right />
       </div>
-      <div class="circle-line" />
     </div>
 
     <div class="expand-panel h-full w-full">
-      <div class="ml-50px flex flex-row items-center">
+      <div ref="$input" class="ml-50px flex flex-row items-center">
         <!-- 检索 input 及 Code 跳转链接按钮 -->
         <div class="relative h-50px flex flex-1 flex-row items-center">
           <div class="searchBar relative z-98">
@@ -48,9 +122,12 @@ const isExpand = ref(false)
           </a>
         </div>
       </div>
+      <div ref="$circleLine" class="w-49px flex items-center justify-center">
+        <div class="circle-line" />
+      </div>
       <!-- 面板 -->
-      <ScratchyBorder class="mt-25px max-w-unset!">
-        <div class="h-420px w-478px flex flex-row flex-wrap select-none gap-4 overflow-auto rounded-md bg-[#944dfe] p-4">
+      <ScratchyBorder ref="$areaListContainer" class="bg-[#944dfe] h-420px! max-w-unset! w-478px!">
+        <div ref="$areaListBox" class="grid grid-cols-6 select-none gap-4 overflow-auto rounded-md p-4">
           <div
             v-for="item in areas"
             :key="item.name"
@@ -79,13 +156,10 @@ const isExpand = ref(false)
   background-size: cover;
 }
 .circle-line {
-  position: absolute;
-  left: 50%;
-  bottom: -50%;
   width: 2px;
-  height: 50%;
+  height: 25px;
   background: white;
-  transform: translate(-50%, 0%);
+  /* transform: translate(-50%, 0%); */
 }
 
 .searchBar {
