@@ -11,10 +11,27 @@ const value = ref('')
 // 关闭动画是先 blur 隐藏，然后收缩
 const isExpand = ref(false)
 
+const $container = ref<HTMLElement | null>(null)
 const $areaListContainer = ref<HTMLElement | null>(null)
 const $areaListBox = ref<HTMLElement | null>(null)
 const $input = ref<HTMLElement | null>(null)
 const $circleLine = ref<HTMLElement | null>(null)
+
+const hasDragged = ref(false)
+const lastedPosition = ref({ x: 40, y: 40 })
+// 这里使用 x、y 是因为控制的是小球，移动的是 container 。而其中有 p-4 的内边距，所以需要计算一下
+const { x, y } = useDraggable($container, {
+  initialValue: lastedPosition.value,
+  onEnd: (position, e) => {
+    if (
+      Math.abs(position.x - lastedPosition.value.x) > 5
+      || Math.abs(position.y - lastedPosition.value.y) > 5
+    )
+      hasDragged.value = true
+
+    lastedPosition.value = position
+  },
+})
 
 const areaListContainerMotionInstance = useMotion($areaListContainer, {
   initial: {
@@ -27,16 +44,25 @@ const areaListContainerMotionInstance = useMotion($areaListContainer, {
     opacity: 1,
     scale: 1,
     pointerEvents: 'auto',
+    transition: {
+      duration: 100,
+    },
   },
 })
 const areaListBoxMotionInstance = useMotion($areaListBox, {
   initial: {
     opacity: 0,
     filter: ' blur(1rem)',
+    transition: {
+      duration: 100,
+    },
   },
   enter: {
     opacity: 1,
     filter: ' blur(0rem)',
+    transition: {
+      duration: 400,
+    },
   },
 })
 const inputMotionInstance = useMotion($input, {
@@ -62,9 +88,9 @@ const circleLineMotionInstance = useMotion($circleLine, {
 
 watch(isExpand, async (v) => {
   if (v) {
+    inputMotionInstance.apply('enter')
+    circleLineMotionInstance.apply('enter')
     const enterPromises = [
-      inputMotionInstance.apply('enter'),
-      circleLineMotionInstance.apply('enter'),
       areaListContainerMotionInstance.apply('enter'),
     ]
     await Promise.all(enterPromises)
@@ -79,26 +105,41 @@ watch(isExpand, async (v) => {
 }, {
   immediate: true,
 })
+
+function handleExpandPanel() {
+  if (hasDragged.value) {
+    hasDragged.value = false
+  }
+  else {
+    isExpand.value = !isExpand.value
+    hasDragged.value = false
+  }
+}
 </script>
 
 <template>
   <div
-    class="area-list-container relative flex flex-col p-4"
+    class="fixed flex flex-col p-4"
+    :style="{
+      left: `calc(${x}px - 1rem)`,
+      top: `calc(${y}px - 1rem)`,
+    }"
   >
     <!-- 最小化 -->
     <div
+      ref="$container"
       class="circle absolute z-99 h-50px w-50px flex flex-row cursor-pointer items-center justify-center rounded-full"
-      @click="isExpand = !isExpand"
+      @click.stop="handleExpandPanel"
     >
       <div class="h-38px w-38px flex flex-row items-center justify-center rounded-full bg-[#944DFEc0]">
         <div i-fluent-emoji:magnifying-glass-tilted-right />
       </div>
     </div>
 
-    <div class="expand-panel h-full w-full">
-      <div ref="$input" class="ml-50px flex flex-row items-center">
+    <div class="expand-panel h-full w-full overflow-hidden">
+      <div class="flex flex-row items-center overflow-hidden rounded-l-30px pl-50px">
         <!-- 检索 input 及 Code 跳转链接按钮 -->
-        <div class="relative h-50px flex flex-1 flex-row items-center">
+        <div ref="$input" class="relative h-50px flex flex-1 flex-row items-center">
           <div class="searchBar relative z-98">
             <input
               v-model="value"
@@ -125,7 +166,7 @@ watch(isExpand, async (v) => {
       </div>
       <!-- 面板 -->
       <ScratchyBorder ref="$areaListContainer" class="bg-[#944dfe] h-420px! max-w-unset! w-478px!">
-        <div ref="$areaListBox" class="grid grid-cols-6 select-none gap-4 overflow-auto rounded-md p-4">
+        <div ref="$areaListBox" class="grid grid-cols-6 h-full select-none gap-4 overflow-auto rounded-md p-4">
           <div
             v-for="item in areas"
             :key="item.name"
