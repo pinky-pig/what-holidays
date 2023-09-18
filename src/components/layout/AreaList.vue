@@ -160,6 +160,12 @@ function filteredCountries(text: string, allAreas: AllAreaType[]) {
   )
 }
 // -------检索逻辑 end----------//
+
+// -------选择逻辑 start----------//
+function selectedArea(item: AllAreaType) {
+  store.currentArea = item
+}
+// -------选择逻辑 end----------//
 </script>
 
 <template>
@@ -217,7 +223,8 @@ function filteredCountries(text: string, allAreas: AllAreaType[]) {
           <div
             v-for="item in filterClosedAreas"
             :key="item.name"
-            class="h-30px w-60px flex flex-row items-center justify-center border-2 border-[#944DFE] rounded-md bg-[#fff]"
+            class="listItem pointer-events-auto h-30px w-60px flex flex-row cursor-pointer items-center justify-center gap-1 rounded-md bg-[#fff]"
+            @click="selectedArea(item)"
           >
             <div class="w-fit flex cursor-pointer items-center overflow-hidden border-2 border-white rounded border-solid bg-[rgba(152,208,255,0.5)] px-1.5 py-[0.1875rem] shadow-[rgba(170,166,170,0.40)] shadow-md hover:animate-[shake_1.5s_ease-in-out_infinite] space-x-0.5">
               <img
@@ -299,6 +306,15 @@ function filteredCountries(text: string, allAreas: AllAreaType[]) {
 .code-tag:hover span{
   color: #944dfe;
   text-decoration-color: #944dfe;
+}
+
+.listItem{
+  box-shadow: #ffffff 0px 0px 0px 1px;
+  transition: box-shadow 0.2s ease-out 0s;
+}
+.listItem:hover{
+  cursor: pointer;
+  box-shadow: #ffffffb0 0px 0px 0px 4px;
 }
 
 .area-list{

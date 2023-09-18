@@ -6,6 +6,7 @@ import type { IMarker, IPopup } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
 import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 import ScratchyModal from '~/components/ui/ScratchyModal.vue'
+import type { AllAreaType } from '~/store/area'
 
 const store = useAreaStore()
 const router = useRouter()
@@ -35,6 +36,9 @@ const areas = computed(() => {
   return countriesArray
 })
 
+/**
+ * 将处理的地区数据存入 store
+ */
 watchEffect(() => {
   store.allAreas = areas.value
 })
@@ -197,21 +201,41 @@ function initAreaPosition() {
       marker.attributes = area
 
       marker.getElement().addEventListener('click', (e) => {
-        store.currentArea = area
-
-        if (area.location?.longitude && area.location?.latitude)
-          store.markerPopup!.attributes.show([area.location.longitude, area.location.latitude])
-
-        // router.push({
-        //   path: '/area',
-        //   query: {
-        //     code: area.code,
-        //   },
-        // })
+        // selectedArea(area)
+        // store.currentArea = area
+        selectedAreaMapAnimation(area, true, false)
       })
     }
   })
 }
+
+/**
+ * 选中地区
+ * @param area 要选中的地区
+ */
+function selectedAreaMapAnimation(area: AllAreaType, isNeedOpenPopup = true, isNeedFlyTo = true) {
+  store.currentArea = area
+
+  if (isNeedOpenPopup && area.location?.longitude && area.location?.latitude)
+    store.markerPopup!.attributes.show([area.location.longitude, area.location.latitude])
+
+  if (isNeedFlyTo && area.location?.longitude && area.location?.latitude) {
+    mapInstance!.flyTo({
+      center: [area.location?.longitude, area.location?.latitude],
+      zoom: 1,
+      speed: 0.5,
+      essential: true,
+    })
+  }
+}
+
+/**
+ * 外部选择当前地区的时候，地图所触发的方法
+ */
+watch(() => store.currentArea, (v) => {
+  if (store.currentArea)
+    selectedAreaMapAnimation(store.currentArea, true, true)
+})
 </script>
 
 <template>
