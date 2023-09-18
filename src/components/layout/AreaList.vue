@@ -102,8 +102,6 @@ watch(isExpand, async (v) => {
     circleLineMotionInstance.apply('initial')
     inputMotionInstance.apply('initial')
   }
-}, {
-  immediate: true,
 })
 
 function handleExpandPanel() {
@@ -115,10 +113,46 @@ function handleExpandPanel() {
     hasDragged.value = false
   }
 }
+
+const isShowPanel = ref(false)
+const $panel = ref<HTMLElement | null>(null)
+async function show() {
+  isShowPanel.value = true
+  if ($panel.value)
+    $panel.value.style.animation = 'blur-show .4s'
+}
+async function close() {
+  if ($panel.value)
+    $panel.value.style.animation = 'blur-hide .4s'
+
+  setTimeout(() => {
+    isShowPanel.value = false
+  }, 400)
+}
+
+onMounted(async () => {
+  // 收缩，先初始化所有动画状态
+  await areaListBoxMotionInstance.apply('initial')
+  const enterPromises = [
+    areaListContainerMotionInstance.apply('initial'),
+    circleLineMotionInstance.apply('initial'),
+    inputMotionInstance.apply('initial'),
+  ]
+  await Promise.all(enterPromises)
+  // 再显示
+  show()
+})
+
+defineExpose({
+  show,
+  close,
+})
 </script>
 
 <template>
   <div
+    v-show="isShowPanel"
+    ref="$panel"
     class="fixed flex flex-col p-4"
     :style="{
       left: `calc(${x}px - 1rem)`,
@@ -151,7 +185,7 @@ function handleExpandPanel() {
 
           <!-- 打开 code 的外链 href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" -->
           <a
-            class="code-tag absolute left-210px top-20px z-99 h-30px w-64px flex select-none items-center justify-center rounded-8px bg-[#fed11b] -ml-15px -rotate-10"
+            class="code-tag absolute left-210px top-16px z-99 h-24px w-56px flex select-none items-center justify-center rounded-8px bg-[#fed11b] -ml-15px"
             href="https://baike.baidu.com/item/ISO%20639-1/8292914?fr=ge_ala"
             target="_blank"
           >
