@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useMotion } from '@vueuse/motion'
+import type { AllAreaType } from '~/store/area'
 
 const store = useAreaStore()
 
-const areas = computed(() => store.allAreas || [])
-const value = ref('')
+const searchText = ref('')
 
 // 这里隐藏的时候，设置 opacity: 0; pointer-events: none;
 // 打开动画是先扩展，然后 blur 显示
@@ -147,6 +147,19 @@ defineExpose({
   show,
   close,
 })
+
+// -------检索逻辑 start----------//
+const filterClosedAreas = ref<AllAreaType[]>(store.allAreas)
+watch(searchText, (v) => {
+  filterClosedAreas.value = filteredCountries(v.toUpperCase(), store.allAreas)
+})
+
+function filteredCountries(text: string, allAreas: AllAreaType[]) {
+  return allAreas.filter(country =>
+    country.code.includes(text),
+  )
+}
+// -------检索逻辑 end----------//
 </script>
 
 <template>
@@ -176,7 +189,7 @@ defineExpose({
         <div ref="$input" class="pointer-events-auto relative h-50px flex flex-1 flex-row items-center">
           <div class="searchBar relative z-98">
             <input
-              v-model="value"
+              v-model="searchText"
               placeholder="可以输入地区 CODE 检索"
               class="searchText placeholder-select-none"
               type="text"
@@ -200,9 +213,9 @@ defineExpose({
       </div>
       <!-- 面板 -->
       <ScratchyBorder ref="$areaListContainer" class="bg-[#944dfe] h-420px! max-w-unset! w-478px!">
-        <div ref="$areaListBox" class="grid grid-cols-6 h-full select-none gap-4 overflow-auto rounded-md p-4">
+        <div ref="$areaListBox" class="area-list grid grid-auto-rows-[min-content] grid-cols-6 h-full select-none gap-4 rounded-md p-4">
           <div
-            v-for="item in areas"
+            v-for="item in filterClosedAreas"
             :key="item.name"
             class="h-30px w-60px flex flex-row items-center justify-center border-2 border-[#944DFE] rounded-md bg-[#fff]"
           >
@@ -286,5 +299,16 @@ defineExpose({
 .code-tag:hover span{
   color: #944dfe;
   text-decoration-color: #944dfe;
+}
+
+.area-list{
+  overflow: overlay;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE10+ */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>
