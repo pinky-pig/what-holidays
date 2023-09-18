@@ -10,7 +10,9 @@ const value = ref('')
 // 打开动画是先扩展，然后 blur 显示
 // 关闭动画是先 blur 隐藏，然后收缩
 const isExpand = ref(false)
+const isShowPanel = ref(false)
 
+const $panel = ref<HTMLElement | null>(null)
 const $container = ref<HTMLElement | null>(null)
 const $areaListContainer = ref<HTMLElement | null>(null)
 const $areaListBox = ref<HTMLElement | null>(null)
@@ -114,8 +116,6 @@ function handleExpandPanel() {
   }
 }
 
-const isShowPanel = ref(false)
-const $panel = ref<HTMLElement | null>(null)
 async function show() {
   isShowPanel.value = true
   if ($panel.value)
@@ -153,7 +153,7 @@ defineExpose({
   <div
     v-show="isShowPanel"
     ref="$panel"
-    class="fixed flex flex-col p-4"
+    class="pointer-events-none fixed flex flex-col p-4"
     :style="{
       left: `calc(${x}px - 1rem)`,
       top: `calc(${y}px - 1rem)`,
@@ -162,18 +162,18 @@ defineExpose({
     <!-- 最小化 -->
     <div
       ref="$container"
-      class="circle absolute z-99 h-50px w-50px flex flex-row cursor-pointer items-center justify-center rounded-full"
-      @click.stop="handleExpandPanel"
+      class="circle pointer-events-auto absolute z-99 h-50px w-50px flex flex-row cursor-pointer select-none items-center justify-center rounded-full"
+      @click="handleExpandPanel"
     >
       <div class="h-38px w-38px flex flex-row items-center justify-center rounded-full bg-[#944DFEc0]">
         <div i-fluent-emoji:magnifying-glass-tilted-right />
       </div>
     </div>
 
-    <div class="expand-panel h-full w-full overflow-hidden">
+    <div class="expand-panel pointer-events-none h-full w-full overflow-hidden">
       <div class="flex flex-row items-center overflow-hidden rounded-l-30px pl-50px">
         <!-- 检索 input 及 Code 跳转链接按钮 -->
-        <div ref="$input" class="relative h-50px flex flex-1 flex-row items-center">
+        <div ref="$input" class="pointer-events-auto relative h-50px flex flex-1 flex-row items-center">
           <div class="searchBar relative z-98">
             <input
               v-model="value"
@@ -195,7 +195,7 @@ defineExpose({
           </a>
         </div>
       </div>
-      <div ref="$circleLine" class="w-49px flex items-center justify-center">
+      <div ref="$circleLine" class="pointer-events-auto w-49px flex items-center justify-center">
         <div class="circle-line" />
       </div>
       <!-- 面板 -->
