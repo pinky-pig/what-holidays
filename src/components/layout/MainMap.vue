@@ -48,7 +48,7 @@ watchEffect(() => {
 // let mapInstance: mapboxgl.Map | null = null
 
 function marsOnloaded(map: mapboxgl.Map) {
-  store.mapInstance = map
+  window.mapInstance = map
   map.on('load', () => {
     initMarkerPopup(map)
 

@@ -22,18 +22,15 @@ export const useAreaStore = defineStore(
     // 在 setup 的写法中， state 定义成响应式的，才能使用下面这个 pinia-plugin-persistedstate
 
     // 1. 所有的地区信息
-    const allAreas = ref<AllAreaType[]>([])
+    const allAreas: AllAreaType[] = []
     // 2. 当前的地区信息
     const currentArea = ref<AreaType | null>(null)
     // 3. 地图上的 popup
-    const markerPopup = ref<IPopup | null>(null)
+    const markerPopup = null as IPopup | null
     // 4. 当前语言模式
     // 4.1 各地区对应的语言
     // 4.2 英文 'en'
     const currentLanguage = ref('')
-
-    // 5. Mapbox 地图实例
-    const mapInstance = ref<mapboxgl.Map | null>(null)
 
     // 路由跳转，popup 使用 createApp()
     function goRouter(options: RouteLocationRaw) {
@@ -45,7 +42,6 @@ export const useAreaStore = defineStore(
       currentArea,
       markerPopup,
       currentLanguage,
-      mapInstance,
       goRouter,
     }
   },

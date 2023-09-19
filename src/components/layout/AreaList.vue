@@ -165,8 +165,8 @@ function filteredCountries(text: string, allAreas: AllAreaType[]) {
 function selectedArea(item: AllAreaType) {
   store.currentArea = item
 
-  if (item.location?.longitude && item.location?.latitude && store.mapInstance) {
-    store.mapInstance!.flyTo({
+  if (item.location?.longitude && item.location?.latitude && window.mapInstance) {
+    window.mapInstance!.flyTo({
       center: [item.location?.longitude, item.location?.latitude],
       zoom: 1,
       speed: 0.5,

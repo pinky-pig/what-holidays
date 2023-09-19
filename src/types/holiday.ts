@@ -1,5 +1,3 @@
-import type LOCATIONS from '~/assets/json/location.json'
-
 export type HolidayType = 'public' | 'bank' | 'optional' | 'school' | 'observance' | string
 
 export interface Holiday {

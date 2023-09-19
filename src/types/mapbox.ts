@@ -5,7 +5,7 @@ export interface IMarker extends mapboxgl.Marker {
 }
 
 export interface IPopup extends mapboxgl.Marker {
-  attributes?: any
+  attributes: any
   isShow: boolean
   show: (coordinates: [number, number]) => void
   hide: () => void
