@@ -44,3 +44,7 @@ nextTick(() => {
   popup.mount('#customMapboxPopup')
 })
 ```
+
+- pinia
+
+pinia 使用 setup 写法的时候，定义变量如果是响应式的，存储数据量过大，性能消耗也会更大。比如地图实例， marker 实例等。
