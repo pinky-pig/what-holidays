@@ -29,21 +29,26 @@ function closeAndToHome() {
   >
     <div class="h-60px w-full flex-shrink-0" @click="closeAndToHome" />
     <div class="wrapper-content w-full flex flex-col" style="height: calc(100% - 60px);">
-      <nav class="h-60px rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
-        <div class="flex items-center justify-between gap-2">
-          <div class="flex items-center gap-4">
-            <div class="return-arrow" @click="closeAndToHome">
-              <div i-carbon:chevron-down />
-            </div>
+      <!-- <ScratchyBorder class="bg-[#944dfe] h-auto! max-w-unset! w-auto!"> -->
+      <div class="h-full w-full flex flex-col">
+        <nav class="h-60px rounded-t-2xl bg-[#e3e3e3] px-4 py-3 font-medium md:px-8">
+          <div class="flex items-center justify-between gap-2">
             <span>
               <slot name="title" />
             </span>
+            <div class="flex items-center gap-4">
+              <div class="return-arrow" @click="closeAndToHome">
+                <div i-carbon:chevron-down />
+              </div>
+            </div>
           </div>
+        </nav>
+        <div class="flex-1 overflow-auto rounded-b-2xl bg-[#ffffff] p-4">
+          <slot />
         </div>
-      </nav>
-      <div class="flex-1 overflow-auto bg-[#ffffff] p-4">
-        <slot />
       </div>
+
+      <!-- </ScratchyBorder> -->
     </div>
   </div>
 </template>
@@ -66,13 +71,13 @@ function closeAndToHome() {
   font-size: 16px;
   border-radius: 18px;
   color: #f0f2f8;
-  background: #2a2f37;
-  box-shadow: #2a2f37 0px 0px 0px 2px;
+  background: #944DFE;
+  box-shadow: #944DFE 0px 0px 0px 2px;
   transition: box-shadow 0.2s ease-out 0s;
 }
 .return-arrow:hover{
   cursor: pointer;
-  box-shadow: #2a2f37b0 0px 0px 0px 5px;
+  box-shadow: #944DFEb0 0px 0px 0px 5px;
 }
 
 .bubbleCardDown{

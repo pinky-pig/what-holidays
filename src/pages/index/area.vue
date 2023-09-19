@@ -12,10 +12,11 @@ import type { Holiday } from '~/types/holiday'
 const isHorizontal = ref(false)
 
 const route = useRoute()
+const store = useAreaStore()
 
-const currentArea = ref(route.query.code as string)
+const currentAreaCode = ref(route.query.code as string)
 const currentYear = ref(dayjs(new Date()).year())
-const hd = new Holidays(currentArea.value)
+const hd = new Holidays(currentAreaCode.value)
 
 const holidays = ref<Holiday[]>([])
 
@@ -37,6 +38,9 @@ const isShowList = ref(false)
 
 <template>
   <RouterWrapper>
+    <template #title>
+      {{ store.currentArea?.name || currentAreaCode }}
+    </template>
     <Splitpanes class="default-theme">
       <Pane>
         <Splitpanes
