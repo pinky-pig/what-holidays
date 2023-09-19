@@ -32,6 +32,9 @@ export const useAreaStore = defineStore(
     // 4.2 英文 'en'
     const currentLanguage = ref('')
 
+    // 5. Mapbox 地图实例
+    const mapInstance = ref<mapboxgl.Map | null>(null)
+
     // 路由跳转，popup 使用 createApp()
     function goRouter(options: RouteLocationRaw) {
       router.push(options)
@@ -42,6 +45,7 @@ export const useAreaStore = defineStore(
       currentArea,
       markerPopup,
       currentLanguage,
+      mapInstance,
       goRouter,
     }
   },

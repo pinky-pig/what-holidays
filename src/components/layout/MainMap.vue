@@ -6,7 +6,6 @@ import type { IMarker, IPopup } from '~/types'
 import LOCATIONS from '~/assets/json/location.json'
 import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 import ScratchyModal from '~/components/ui/ScratchyModal.vue'
-import type { AllAreaType } from '~/store/area'
 
 const store = useAreaStore()
 const router = useRouter()
@@ -46,23 +45,23 @@ watchEffect(() => {
 /**
  * 地图加载完成
  */
-let mapInstance: mapboxgl.Map | null = null
+// let mapInstance: mapboxgl.Map | null = null
 
 function marsOnloaded(map: mapboxgl.Map) {
-  mapInstance = map
-  mapInstance.on('load', () => {
-    initMarkerPopup()
+  store.mapInstance = map
+  map.on('load', () => {
+    initMarkerPopup(map)
 
-    initUserPosition()
+    initUserPosition(map)
 
-    initAreaPosition()
+    initAreaPosition(map)
   })
 }
 
 /**
  * 使用 marker 创建 popup
  */
-function initMarkerPopup() {
+function initMarkerPopup(map: mapboxgl.Map) {
   const el = document.createElement('div')
   el.id = 'customMapboxPopup'
 
@@ -74,7 +73,7 @@ function initMarkerPopup() {
     },
   )
     .setLngLat([0, 0] as LngLatLike)
-    .addTo(mapInstance!) as IPopup
+    .addTo(map) as IPopup
 
   const popup = createApp(CustomMapboxPopup)
   popup.mount('#customMapboxPopup')
@@ -140,7 +139,7 @@ function initMarkerPopup() {
 /**
  * 初始化当前用户的经纬度坐标头像，并飞到当前用户所在的经纬度
  */
-function initUserPosition() {
+function initUserPosition(map: mapboxgl.Map) {
   window.navigator.geolocation.getCurrentPosition(
     (pos) => {
       const crd = pos.coords
@@ -149,7 +148,7 @@ function initUserPosition() {
       el.innerHTML = `<logo-marker name="${'/avatar.svg'}" />`
       const marker = new mapboxgl.Marker(el)
         .setLngLat([crd.longitude, crd.latitude] as LngLatLike)
-        .addTo(mapInstance!) as IMarker
+        .addTo(map) as IMarker
 
       marker.attributes = '测试数据'
 
@@ -159,7 +158,7 @@ function initUserPosition() {
         // open()
       })
 
-      mapInstance!.flyTo({
+      map.flyTo({
         center: [crd.longitude, crd.latitude], // 您已经添加的点的坐标
         zoom: 1, // 目标缩放级别
         speed: 0.8, // 飞行速度（可选）
@@ -180,7 +179,7 @@ function initUserPosition() {
 /**
  * 获取到国家或地区后，从 location.json 获取对应的经纬度，添加点
  */
-function initAreaPosition() {
+function initAreaPosition(map: mapboxgl.Map) {
   areas.value.forEach((area) => {
     if (area.location) {
       const el = document.createElement('div')
@@ -196,14 +195,15 @@ function initAreaPosition() {
       `
       const marker = new mapboxgl.Marker(el)
         .setLngLat([area.location.longitude, area.location.latitude] as LngLatLike)
-        .addTo(mapInstance!) as IMarker
+        .addTo(map) as IMarker
 
       marker.attributes = area
 
       marker.getElement().addEventListener('click', (e) => {
-        // selectedArea(area)
-        // store.currentArea = area
-        selectedAreaMapAnimation(area, true, false)
+        store.currentArea = area
+
+        if (area.location?.longitude && area.location?.latitude)
+          store.markerPopup!.attributes.show([area.location.longitude, area.location.latitude])
       })
     }
   })
@@ -213,29 +213,12 @@ function initAreaPosition() {
  * 选中地区
  * @param area 要选中的地区
  */
-function selectedAreaMapAnimation(area: AllAreaType, isNeedOpenPopup = true, isNeedFlyTo = true) {
-  store.currentArea = area
-
-  if (isNeedOpenPopup && area.location?.longitude && area.location?.latitude)
-    store.markerPopup!.attributes.show([area.location.longitude, area.location.latitude])
-
-  if (isNeedFlyTo && area.location?.longitude && area.location?.latitude) {
-    mapInstance!.flyTo({
-      center: [area.location?.longitude, area.location?.latitude],
-      zoom: 1,
-      speed: 0.5,
-      essential: true,
-    })
-  }
-}
-
-/**
- * 外部选择当前地区的时候，地图所触发的方法
- */
-watch(() => store.currentArea, (v) => {
-  if (store.currentArea)
-    selectedAreaMapAnimation(store.currentArea, true, true)
-})
+//  mapInstance!.flyTo({
+//       center: [area.location?.longitude, area.location?.latitude],
+//       zoom: 1,
+//       speed: 0.5,
+//       essential: true,
+//     })
 </script>
 
 <template>

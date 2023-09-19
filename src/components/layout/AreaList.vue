@@ -164,6 +164,15 @@ function filteredCountries(text: string, allAreas: AllAreaType[]) {
 // -------选择逻辑 start----------//
 function selectedArea(item: AllAreaType) {
   store.currentArea = item
+
+  if (item.location?.longitude && item.location?.latitude && store.mapInstance) {
+    store.mapInstance!.flyTo({
+      center: [item.location?.longitude, item.location?.latitude],
+      zoom: 1,
+      speed: 0.5,
+      essential: true,
+    })
+  }
 }
 // -------选择逻辑 end----------//
 </script>
