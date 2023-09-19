@@ -15,7 +15,7 @@ onMounted(() => {
 
 function setAppRootScale(v: string) {
   const rootDom = document.querySelector('#appRoot') as HTMLElement
-  if (v === '/area') {
+  if (v.startsWith('/area')) {
     if (rootDom) {
       rootDom.style.transform = 'scale(0.95) translateY(20px)'
       rootDom.style.borderRadius = '20px'

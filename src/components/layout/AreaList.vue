@@ -172,6 +172,9 @@ function selectedArea(item: AllAreaType) {
       speed: 0.5,
       essential: true,
     })
+
+    if (item.location?.longitude && item.location?.latitude)
+      store.markerPopup!.attributes.show([item.location.longitude, item.location.latitude])
   }
 }
 // -------选择逻辑 end----------//
