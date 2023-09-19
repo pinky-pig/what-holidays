@@ -209,14 +209,14 @@ function selectedArea(item: AllAreaType) {
             <input
               v-model="searchText"
               placeholder="可以输入地区 CODE 检索"
-              class="searchText placeholder-select-none"
+              class="searchText select-none placeholder-select-none"
               type="text"
             >
           </div>
 
           <!-- 打开 code 的外链 href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" -->
           <a
-            class="code-tag absolute left-210px top-16px z-99 h-24px w-56px flex select-none items-center justify-center rounded-8px bg-[#fed11b] -ml-15px"
+            class="code-tag absolute left-210px top-16px z-99 h-24px w-56px flex select-none select-none items-center justify-center rounded-8px bg-[#fed11b] -ml-15px"
             href="https://baike.baidu.com/item/ISO%20639-1/8292914?fr=ge_ala"
             target="_blank"
           >
