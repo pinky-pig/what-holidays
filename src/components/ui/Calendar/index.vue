@@ -65,7 +65,11 @@ function changeMonth(type: ManipulateType, num: number) {
       <Header :title="title" :switch-month="headerOption.switchMonth" @changeMonth="changeMonth" />
       <WeekName />
 
-      <Body class="flex-1" :table-data="tableData?.flat()" />
+      <Body
+        class="flex-1"
+        :table-data="tableData?.flat()"
+        :current-date="currentDate"
+      />
     </div>
   </div>
 </template>

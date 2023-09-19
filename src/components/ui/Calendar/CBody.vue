@@ -1,9 +1,23 @@
 <script setup lang="ts">
 import type { DateCell } from '~/utils/calendar'
 
-defineProps<{
-  tableData: DateCell[]
-}>()
+const props = withDefaults(
+  defineProps<{
+    tableData: DateCell[]
+  }>(),
+  { },
+)
+
+// const todayDate = new Date()
+
+const bodyTableData = computed(() => {
+  return props.tableData?.flat()?.map((item) => {
+    return {
+      ...item,
+      formatDate: item.date.format('YYYY-MM-DD'),
+    }
+  })
+})
 </script>
 
 <template>
@@ -11,7 +25,7 @@ defineProps<{
     class="grid grid-cols-7 h-full w-full gap-1px overflow-hidden border border-[rgb(229,231,235)] rounded-lg bg-[rgb(229,231,235)]"
   >
     <button
-      v-for="item, index in tableData?.flat()" :key="index"
+      v-for="item, index in bodyTableData" :key="index"
       class="relative flex items-center justify-center text-sm leading-8 hover:bg-[rgb(243,244,246)]"
       :class="
         item.type === 'normal'
@@ -19,7 +33,12 @@ defineProps<{
           : 'bg-[rgb(249,250,251)] text-[rgb(156,163,175)]'
       "
     >
-      {{ item.text }}
+      <!-- <span v-if="dayjs(todayDate).format('YYYY-MM-DD') === item.formatDate">
+        今天
+      </span> -->
+      <span>
+        {{ item.text }}
+      </span>
 
       <div
         v-show="item.isSelected"

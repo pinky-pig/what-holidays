@@ -6,6 +6,7 @@ import RouterWrapper from '../../components/ui/RouterWrapper.vue'
 
 import YearCalendar from './components/Year.vue'
 import HolidayList from './components/List.vue'
+import Now from './components/Now.vue'
 
 import type { Holiday } from '~/types/holiday'
 
@@ -41,23 +42,25 @@ const isShowList = ref(false)
     <template #title>
       {{ store.currentArea?.name || currentAreaCode }}
     </template>
-    <Splitpanes class="default-theme">
-      <Pane>
-        <Splitpanes
-          :horizontal="isHorizontal"
-          class="default-theme"
-        >
-          <Pane min-size="20">
+    <Splitpanes class="default-theme" :horizontal="isHorizontal">
+      <Pane min-size="20">
+        <Splitpanes class="default-theme editors-height" horizontal>
+          <Pane>
+            <Container title="Now">
+              <Now />
+            </Container>
+          </Pane>
+          <Pane>
             <Container title="节日">
               <HolidayList :holidays="holidays" />
             </Container>
           </Pane>
-          <Pane size="80" min-size="40">
-            <Container title="日历">
-              <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
-            </Container>
-          </Pane>
         </Splitpanes>
+      </Pane>
+      <Pane size="80" min-size="40">
+        <Container title="日历">
+          <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
+        </Container>
       </Pane>
     </Splitpanes>
   </RouterWrapper>
