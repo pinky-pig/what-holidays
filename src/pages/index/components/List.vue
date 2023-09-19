@@ -28,7 +28,7 @@ function handleSelectHoliday(item: typeof formatHolidays.value[0]) {
 
 <template>
   <div
-    class="h-full max-w-1300px w-full gap-10px bg-[#eee] p-10px md:grid-cols-4 sm:grid-cols-2"
+    class="h-full max-w-1300px w-full gap-10px overflow-auto bg-[#eee] p-10px md:grid-cols-4 sm:grid-cols-2"
   >
     <!-- list -->
     <div

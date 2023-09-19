@@ -47,12 +47,12 @@ const isShowList = ref(false)
           :horizontal="isHorizontal"
           class="default-theme"
         >
-          <Pane>
+          <Pane min-size="20">
             <Container title="节日">
               <HolidayList :holidays="holidays" />
             </Container>
           </Pane>
-          <Pane size="300">
+          <Pane size="80" min-size="40">
             <Container title="日历">
               <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
             </Container>
