@@ -15,6 +15,10 @@ const isHorizontal = ref(false)
 const route = useRoute()
 const store = useAreaStore()
 
+// 当前选中的节日
+const currentHoliday = ref<Holiday>()
+provide('currentHoliday', currentHoliday)
+
 const currentAreaCode = ref(route.query.code as string)
 const currentYear = ref(dayjs(new Date()).year())
 const hd = new Holidays(currentAreaCode.value)
@@ -33,8 +37,6 @@ function getYearHolidays(year: number) {
   const days = hd.getHolidays(year)
   return days
 }
-
-const isShowList = ref(false)
 </script>
 
 <template>
@@ -59,7 +61,7 @@ const isShowList = ref(false)
       </Pane>
       <Pane size="80" min-size="40">
         <Container title="日历">
-          <YearCalendar v-show="!isShowList" :current-year="currentYear" :holidays="holidays" />
+          <YearCalendar :current-year="currentYear" :holidays="holidays" />
         </Container>
       </Pane>
     </Splitpanes>

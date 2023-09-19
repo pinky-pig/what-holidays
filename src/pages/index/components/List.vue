@@ -2,27 +2,17 @@
 import dayjs from 'dayjs'
 import type { Holiday } from '~/types'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     holidays: Holiday[]
   }>(),
   {},
 )
 
-const formatHolidays = computed(() => {
-  return props.holidays.map((item) => {
-    return {
-      ...item,
-      start: dayjs(new Date(item.start)).format('YYYY-MM-DD'),
-      end: dayjs(new Date(item.end)).format('YYYY-MM-DD'),
-      date: dayjs(new Date(item.date)).format('YYYY-MM-DD'),
-    }
-  })
-})
+const currentHoliday = inject('currentHoliday') as Ref<Holiday>
 
-function handleSelectHoliday(item: typeof formatHolidays.value[0]) {
-  // eslint-disable-next-line no-console
-  console.log(item)
+function handleSelectHoliday(item: Holiday) {
+  currentHoliday.value = item
 }
 </script>
 
@@ -32,7 +22,7 @@ function handleSelectHoliday(item: typeof formatHolidays.value[0]) {
   >
     <!-- list -->
     <div
-      v-for="item in formatHolidays"
+      v-for="item in holidays"
       :key="item.name"
       class="mb-2 cursor-pointer rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
       @click="handleSelectHoliday(item)"
@@ -40,7 +30,7 @@ function handleSelectHoliday(item: typeof formatHolidays.value[0]) {
       <div>
         <span class="text-14px font-bold"> {{ item.name }}</span>
         <br>
-        <span class="text-12px"> {{ item.date }}</span>
+        <span class="text-12px"> {{ dayjs(new Date(item.date)).format('YYYY-MM-DD') }}</span>
       </div>
     </div>
   </div>
