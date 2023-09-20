@@ -96,7 +96,7 @@ function initMarkerPopup(map: mapboxgl.Map) {
           popDom.style.animation = ''
 
           setTimeout(() => {
-            popDom.style.zIndex = '9999'
+            popDom.style.zIndex = '99'
             popDom.style.animation = 'blur-show .4s'
           })
         }
@@ -109,7 +109,7 @@ function initMarkerPopup(map: mapboxgl.Map) {
 
         const popDom = document.getElementById('customMapboxPopup')
         if (popDom) {
-          popDom.style.zIndex = '9999'
+          popDom.style.zIndex = '99'
           popDom.style.animation = 'blur-show .4s'
         }
       }
