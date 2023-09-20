@@ -127,11 +127,19 @@ async function close() {
 
   setTimeout(() => {
     isShowPanel.value = false
-  }, 400)
+  }, 300)
 }
 
+// 打开关闭设置一下节流
+const throttledFnShow = useThrottleFn(() => {
+  show()
+}, 1000)
+const throttledFnClose = useThrottleFn(() => {
+  close()
+}, 1000)
+
 onMounted(async () => {
-  // 收缩，先初始化所有动画状态
+  // 1. 收缩，先初始化所有动画状态
   await areaListBoxMotionInstance.apply('initial')
   const enterPromises = [
     areaListContainerMotionInstance.apply('initial'),
@@ -139,8 +147,16 @@ onMounted(async () => {
     inputMotionInstance.apply('initial'),
   ]
   await Promise.all(enterPromises)
-  // 再显示
-  show()
+  // 2. 再显示。增加一个延迟，设置两秒之后再显示，没什么特殊的意义
+  setTimeout(() => {
+    show()
+  }, 2000)
+
+  // 3. 监听一个回车，显示隐藏这个组件
+  document.addEventListener('keydown', (event) => {
+    if (event.key === ' ')
+      isShowPanel.value ? throttledFnClose() : throttledFnShow()
+  })
 })
 
 defineExpose({
