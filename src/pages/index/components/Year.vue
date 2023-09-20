@@ -20,11 +20,12 @@ const currentHoliday = inject('currentHoliday') as Ref<Holiday>
 
 const $calendars = ref<HTMLElement[]>([])
 
+// 获取节日所在的月份
+const currentHolidayInMonth = computed(() => new Date(currentHoliday.value?.date).getMonth() + 1)
+
 watch(currentHoliday, (v) => {
-  // 获取节日所在的月份。这个月份是从 0 开始的，刚好 index 也是从 0 开始
-  const month = new Date(v.date).getMonth()
-  // 滚到视野范围内
-  $calendars.value[month].scrollIntoView({ behavior: 'smooth', block: 'center' })
+  // 滚到视野范围内，index 是从 0 开始
+  $calendars.value[currentHolidayInMonth.value - 1].scrollIntoView({ behavior: 'smooth', block: 'center' })
 })
 </script>
 
@@ -45,7 +46,8 @@ watch(currentHoliday, (v) => {
         }"
         :current-date="new Date(`${currentYear}-${index + 1}-01`)"
         :holidays="holidays"
-        class="w-300px! transition-all! duration-300! ease-in-out!"
+        class="outline-3px outline-transparent outline-solid w-300px! transition-all! duration-300! ease-in-out!"
+        :class="currentHolidayInMonth === (index + 1) ? 'outline-[#bbbeee]!' : 'outline-transparent'"
       />
     </div>
   </div>

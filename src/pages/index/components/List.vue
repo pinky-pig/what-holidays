@@ -24,7 +24,8 @@ function handleSelectHoliday(item: Holiday) {
     <div
       v-for="item in holidays"
       :key="item.name"
-      class="mb-2 cursor-pointer rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 cursor-pointer rounded-lg bg-white p-2 transition-all duration-300 ease-in-out hover:bg-[#fefefe] hover:shadow-md"
+      :class="currentHoliday?.name === item?.name ? 'bg-[#bbbeee]!' : ''"
       @click="handleSelectHoliday(item)"
     >
       <div>
