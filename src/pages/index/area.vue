@@ -53,14 +53,14 @@ function getYearHolidays(year: number) {
             </Container>
           </Pane>
           <Pane>
-            <Container title="节日">
+            <Container title="Holiday">
               <HolidayList :holidays="holidays" />
             </Container>
           </Pane>
         </Splitpanes>
       </Pane>
       <Pane size="80" min-size="40">
-        <Container title="日历">
+        <Container title="Calendar">
           <YearCalendar :current-year="currentYear" :holidays="holidays" />
         </Container>
       </Pane>

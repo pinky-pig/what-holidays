@@ -33,17 +33,16 @@ const bodyTableData = computed(() => {
           : 'bg-[rgb(249,250,251)] text-[rgb(156,163,175)]'
       "
     >
+      <div
+        v-show="item.isSelected"
+        class="absolute left-1/2 top-1/2 h-5 w-5 rounded-full bg-[#bbbeee] -translate-1/2"
+      />
       <!-- <span v-if="dayjs(todayDate).format('YYYY-MM-DD') === item.formatDate">
         今天
       </span> -->
-      <span>
+      <div class="z-10">
         {{ item.text }}
-      </span>
-
-      <div
-        v-show="item.isSelected"
-        class="absolute left-1/2 top-1/2 h-5 w-5 rounded-full bg-black bg-opacity-20 -translate-1/2"
-      />
+      </div>
     </button>
   </div>
 </template>
