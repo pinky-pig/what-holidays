@@ -65,7 +65,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
     <!-- 今天是节假日吗 -->
     <div
       v-if="isHolidayInNow"
-      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 text-[14px] shadow-none hover:bg-[#fefefe] hover:shadow-md"
     >
       <div class="h-24px w-24px flex-shrink-0" i-fluent-emoji:beaming-face-with-smiling-eyes />
       <div class="w-36px flex-shrink-0 leading-5">
@@ -77,7 +77,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
     </div>
     <div
       v-else
-      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 text-[14px] shadow-none hover:bg-[#fefefe] hover:shadow-md"
     >
       <div class="h-24px w-24px" i-fluent-emoji:loudly-crying-face />
       <p class="leading-5">
@@ -87,7 +87,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
     <!-- 这个月有节假日吗 -->
     <div
       v-if="holidayInMonth"
-      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 text-[14px] shadow-none hover:bg-[#fefefe] hover:shadow-md"
     >
       <div class="h-24px w-24px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
       <div class="w-36px flex-shrink-0 leading-5">
@@ -101,7 +101,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
     </div>
     <div
       v-else
-      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 text-[14px] shadow-none hover:bg-[#fefefe] hover:shadow-md"
     >
       <div class="h-24px w-24px" i-fluent-emoji:face-with-spiral-eyes />
       <div> 这个月没有节假日了 </div>
@@ -110,7 +110,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
     <!-- 最近的下个节日 -->
     <div
       v-if="nextHoliday"
-      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 text-[14px] shadow-none hover:bg-[#fefefe] hover:shadow-md"
     >
       <div class="h-24px w-24px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
 
@@ -123,7 +123,7 @@ function getHolidayNextToDay(holidaysInYear: Holiday[]): Holiday | null {
     </div>
     <div
       v-else
-      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 shadow-none hover:bg-[#fefefe] hover:shadow-md"
+      class="mb-2 flex flex-row cursor-pointer items-center gap-2 rounded-lg bg-white p-2 text-[14px] shadow-none hover:bg-[#fefefe] hover:shadow-md"
     >
       <div class="h-24px w-24px" i-fluent-emoji:face-holding-back-tears />
       <p class="leading-5">

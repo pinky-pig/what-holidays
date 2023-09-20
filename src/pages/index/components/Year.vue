@@ -30,7 +30,7 @@ watch(currentHoliday, (v) => {
 
 <template>
   <div
-    class="year-container h-auto w-full gap-10px rounded-md bg-[#eee] p-10px"
+    class="year-container h-full w-full gap-10px overflow-auto rounded-md bg-[#eee] p-10px"
   >
     <div
       v-for="(_item, index) in months"
