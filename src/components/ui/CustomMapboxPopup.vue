@@ -81,74 +81,89 @@ function goArea() {
     <div class="close pointer-events-auto cursor-pointer" @click="closeMarkerPopup">
       <div i-carbon:close-filled />
     </div>
-    <ScratchyBorder>
-      <div class="popup">
-        <div class="mb-2 cursor-pointer underline underline-offset-6 underline-dashed hover:text-[#c4c7ff]" @click="goArea()">
-          {{ store.currentArea?.name }}
+    <!-- <ScratchyBorder> -->
+
+    <div class="popup">
+      <div class="mb-2 cursor-pointer underline underline-offset-6 underline-dashed hover:text-[#c4c7ff]" @click="goArea()">
+        {{ store.currentArea?.name }}
+      </div>
+      <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
+
+      <div class="relative z-999">
+        <!-- 今天是节假日吗 -->
+        <div v-if="isHolidayInNow" class="flex flex-shrink-0 flex-row items-start gap-2">
+          <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:beaming-face-with-smiling-eyes />
+          <div class="w-36px flex-shrink-0 leading-5">
+            今天：
+          </div>
+          <div class="flex">
+            {{ isHolidayInNow[0].name }}
+          </div>
         </div>
-        <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
-
-        <div class="relative z-999">
-          <!-- 今天是节假日吗 -->
-          <div v-if="isHolidayInNow" class="flex flex-shrink-0 flex-row items-start gap-2">
-            <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:beaming-face-with-smiling-eyes />
-            <div class="w-36px flex-shrink-0 leading-5">
-              今天：
-            </div>
-            <div class="flex">
-              {{ isHolidayInNow[0].name }}
-            </div>
+        <div v-else class="flex flex-row items-center gap-2">
+          <div class="h-20px w-16px" i-fluent-emoji:loudly-crying-face />
+          <p class="leading-5">
+            今天没有放假
+          </p>
+        </div>
+        <!-- 这个月有节假日吗 -->
+        <div v-if="holidayInMonth" class="pointer-events-auto flex flex-row cursor-pointer items-start gap-2">
+          <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
+          <div class="w-36px flex-shrink-0 leading-5">
+            本月：
           </div>
-          <div v-else class="flex flex-row items-center gap-2">
-            <div class="h-20px w-16px" i-fluent-emoji:loudly-crying-face />
-            <p class="leading-5">
-              今天没有放假
-            </p>
-          </div>
-          <!-- 这个月有节假日吗 -->
-          <div v-if="holidayInMonth" class="pointer-events-auto flex flex-row cursor-pointer items-start gap-2">
-            <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
-            <div class="w-36px flex-shrink-0 leading-5">
-              本月：
-            </div>
-            <div class="flex flex-row flex-wrap">
-              <p v-for="item in holidayInMonth" :key="item.name">
-                {{ item.name }}&nbsp;
-              </p>
-            </div>
-          </div>
-          <div v-else class="flex flex-row items-center gap-2">
-            <div class="h-20px w-16px" i-fluent-emoji:face-with-spiral-eyes />
-            <div> 这个月没有节假日了 </div>
-          </div>
-
-          <!-- 最近的下个节日 -->
-          <div v-if="nextHoliday" class="flex flex-row items-start gap-2">
-            <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
-
-            <div class="w-36px flex-shrink-0 leading-5">
-              下个：
-            </div>
-            <div class="flex">
-              {{ nextHoliday.name }}
-            </div>
-          </div>
-          <div v-else class="flex flex-row items-center gap-2">
-            <div class="h-20px w-16px" i-fluent-emoji:face-holding-back-tears />
-            <p class="leading-5">
-              今年没有节假日了
+          <div class="flex flex-row flex-wrap">
+            <p v-for="item in holidayInMonth" :key="item.name">
+              {{ item.name }}&nbsp;
             </p>
           </div>
         </div>
+        <div v-else class="flex flex-row items-center gap-2">
+          <div class="h-20px w-16px" i-fluent-emoji:face-with-spiral-eyes />
+          <div> 这个月没有节假日了 </div>
+        </div>
 
-        <!-- 弹出按钮 -->
-        <!-- <div class="my-3 h-1px w-full border border-white border-dashed" />
+        <!-- 最近的下个节日 -->
+        <div v-if="nextHoliday" class="flex flex-row items-start gap-2">
+          <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
+
+          <div class="w-36px flex-shrink-0 leading-5">
+            下个：
+          </div>
+          <div class="flex">
+            {{ nextHoliday.name }}
+          </div>
+        </div>
+        <div v-else class="flex flex-row items-center gap-2">
+          <div class="h-20px w-16px" i-fluent-emoji:face-holding-back-tears />
+          <p class="leading-5">
+            今年没有节假日了
+          </p>
+        </div>
+      </div>
+
+      <!-- 弹出按钮 -->
+      <!-- <div class="my-3 h-1px w-full border border-white border-dashed" />
 
         <div class="relative h-20px w-full cursor-pointer rounded-md text-center text-[#944DFE] z-999! bg-white!" @click="goArea()">
           详情
         </div> -->
+
+      <!-- border 样式，直接复制粘贴 -->
+      <div class="scratchyBorder">
+        <div class="frames">
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+        <div class="corners">
+          <div />
+          <div />
+        </div>
       </div>
-    </ScratchyBorder>
+    </div>
+    <!-- </ScratchyBorder> -->
     <div class="mt-2px w-full flex items-center justify-center text-center">
       <svg class="fill-#944DFE" width="11" height="6" viewBox="0 0 11 6" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -193,16 +208,100 @@ function goArea() {
 }
 
 .popup {
-  width: 100%;
-  height: 100%;
-  padding: 10px 15px;
+  /* width: 100%;
+  height: 100%; */
+  padding: 20px 20px;
   color: white;
   background: #944DFE;
   backdrop-filter: blur(10px);
+  max-width: 300px;
+  border-radius: 30px;
   /* border:6px solid white;
   border-radius: 10px;
   overflow: hidden;
   mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%;
   -webkit-mask: url(/src/assets/img/video-mask.png) no-repeat center center/100% 100%; */
 }
+
+/* --------------- border 样式 start --------------- */
+.scratchyBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.25s cubic-bezier(0.62, 0.02, 0.34, 1);
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.scratchyBorder > div {
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  position: absolute;
+}
+
+.scratchyBorder .frames div {
+  background: url("~/assets/svg/speciesBorder.svg") repeat-x 50% 50%;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.scratchyBorder .frames div:nth-child(2), .scratchyBorder .frames div:nth-child(4) {
+  width: 20px;
+  height: 100%;
+  background: url("~/assets/svg/speciesBorderVert.svg") repeat-y 50% 50%;
+  background-size: cover;
+}
+
+.scratchyBorder .frames div:nth-child(3) {
+  bottom: 0;
+  top: auto;
+}
+
+.scratchyBorder .frames div:nth-child(3), .scratchyBorder .frames div:nth-child(4) {
+  transform: rotate(179.99deg);
+}
+
+.scratchyBorder .frames div:nth-child(4) {
+  right: 0;
+  left: auto;
+}
+
+.scratchyBorder .corners div::before, .scratchyBorder .corners div::after {
+  content: "";
+  background: url("~/assets/svg/speciesCorner.svg") no-repeat center center;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 10px;
+  top: 11px;
+}
+
+.scratchyBorder .corners div:nth-child(1)::after {
+  transform: rotate(90deg);
+  left: auto;
+  right: 10px;
+  top: 11px;
+}
+
+.scratchyBorder .corners div:nth-child(2)::before {
+  left: auto;
+  right: 10px;
+  top: auto;
+  bottom: 11px;
+  transform: rotate(180deg);
+}
+
+.scratchyBorder .corners div:nth-child(2)::after {
+  top: auto;
+  bottom: 11px;
+  transform: rotate(270deg);
+}
+/* --------------- border 样式 end --------------- */
 </style>
