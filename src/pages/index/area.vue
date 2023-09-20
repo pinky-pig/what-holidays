@@ -10,11 +10,15 @@ import Now from './components/Now.vue'
 
 import type { Holiday } from '~/types/holiday'
 
-const isHorizontal = ref(false)
-
 const route = useRoute()
 const store = useAreaStore()
 
+const isHorizontal = ref(false)
+const { width } = useWindowSize()
+
+watch(width, (v) => {
+  isHorizontal.value = v <= 500
+})
 // 当前选中的节日
 const currentHoliday = ref<Holiday>()
 provide('currentHoliday', currentHoliday)
@@ -42,17 +46,23 @@ function getYearHolidays(year: number) {
 <template>
   <RouterWrapper>
     <template #title>
-      {{ store.currentArea?.name || currentAreaCode }}
+      <div class="flex flex-row items-center justify-start gap-10px font-bold">
+        <img
+          :src="store.currentArea?.flag"
+          class="block h-6 w-6"
+        >
+        {{ store.currentArea?.name || currentAreaCode }}
+      </div>
     </template>
     <Splitpanes class="default-theme" :horizontal="isHorizontal">
       <Pane min-size="20">
         <Splitpanes class="default-theme editors-height" horizontal>
-          <Pane>
+          <Pane size="30">
             <Container title="Now">
               <Now />
             </Container>
           </Pane>
-          <Pane>
+          <Pane size="70">
             <Container title="Holiday">
               <HolidayList :holidays="holidays" />
             </Container>
