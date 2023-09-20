@@ -20,7 +20,7 @@ watch(width, (v) => {
   isHorizontal.value = v <= 500
 })
 // 当前选中的节日
-const currentHoliday = ref<Holiday>()
+const currentHoliday = ref<Holiday | null>(null)
 provide('currentHoliday', currentHoliday)
 
 const currentAreaCode = ref(route.query.code as string)

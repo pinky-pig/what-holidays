@@ -21,11 +21,17 @@ const currentHoliday = inject('currentHoliday') as Ref<Holiday>
 const $calendars = ref<HTMLElement[]>([])
 
 // 获取节日所在的月份
-const currentHolidayInMonth = computed(() => new Date(currentHoliday.value?.date).getMonth() + 1)
+const currentHolidayInMonth = computed(() => {
+  if (currentHoliday.value?.date)
+    return new Date(currentHoliday.value?.date).getMonth() + 1
+  else
+    return 0
+})
 
+// 日历视野范围绑定当前节日
 watch(currentHoliday, (v) => {
   // 滚到视野范围内，index 是从 0 开始
-  $calendars.value[currentHolidayInMonth.value - 1].scrollIntoView({ behavior: 'smooth', block: 'center' })
+  $calendars.value[currentHolidayInMonth.value - 1]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 })
 </script>
 
@@ -44,8 +50,9 @@ watch(currentHoliday, (v) => {
           showMonth: true,
           switchMonth: false,
         }"
-        :current-date="new Date(`${currentYear}-${index + 1}-01`)"
         :holidays="holidays"
+        :current-date="new Date(`${currentYear}-${index + 1}-01`)"
+        :show-popover-date="currentHoliday?.date ? [new Date(currentHoliday?.date)] : undefined"
         class="outline-3px outline-transparent outline-solid w-300px! transition-all! duration-300! ease-in-out!"
         :class="currentHolidayInMonth === (index + 1) ? 'outline-[#bbbeee]!' : 'outline-transparent'"
       />

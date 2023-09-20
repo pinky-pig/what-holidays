@@ -4,6 +4,7 @@ import type { DateCell } from '~/utils/calendar'
 const props = withDefaults(
   defineProps<{
     tableData: DateCell[]
+    showPopoverDate?: Date[]
   }>(),
   { },
 )
@@ -47,6 +48,27 @@ function hidePopover(item: typeof bodyTableData.value[0]) {
     item.isPopoverVisible = false
   }
 }
+
+// 这里为什么要 defineExpose 呢？
+// 是因为当前组件会循环调用了12次渲染年日历，而popover是单个的，不需要重复运行多次。所以放到父组件运行
+defineExpose({
+  showPopover,
+  hidePopover,
+})
+
+// watch(() => props.showPopoverDate, (v) => {
+//   // 这里是一个时间的数组，从 bodyTableData 找到对应的 item
+//   showPopover(bodyTableData.value[6])
+//   // if (v) {
+//   //   v.forEach((item) => {
+//   //     const formatItem = dayjs(item).format('YYYY-MM-DD')
+//   //     bodyTableData.value.forEach((it) => {
+//   //       if (it.formatDate === formatItem)
+//   //         showPopover(it)
+//   //     })
+//   //   })
+//   // }
+// })
 </script>
 
 <template>

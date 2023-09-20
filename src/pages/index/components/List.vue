@@ -9,10 +9,14 @@ withDefaults(
   {},
 )
 
-const currentHoliday = inject('currentHoliday') as Ref<Holiday>
+const currentHoliday = inject('currentHoliday') as Ref<Holiday | null>
 
 function handleSelectHoliday(item: Holiday) {
-  currentHoliday.value = item
+  // 触发两次
+  currentHoliday.value = null
+  nextTick(() => {
+    currentHoliday.value = item
+  })
 }
 </script>
 
