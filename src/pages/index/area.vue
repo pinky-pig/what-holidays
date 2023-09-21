@@ -63,7 +63,7 @@ function getYearHolidays(year: number) {
             </Container>
           </Pane>
           <Pane size="70">
-            <Container title="Holiday">
+            <Container :title="`Holiday : ${holidays.length}`">
               <HolidayList :holidays="holidays" />
             </Container>
           </Pane>

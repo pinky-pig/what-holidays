@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import WeekName from './WeekName.vue'
 import Header from './CHeader.vue'
 import Body from './CBody.vue'
+import type { DateCell } from '~/utils/calendar'
 import { generateMonthCalendar } from '~/utils/calendar'
 import type { Holiday } from '~/types'
 
@@ -16,7 +17,6 @@ const props = withDefaults(
     }
     currentDate?: Date
     holidays?: Holiday[]
-    showPopoverDate?: Date[]
   }>(),
   {
     headerOption: () => ({
@@ -28,6 +28,8 @@ const props = withDefaults(
     holidays: () => [], // 这个月被选中的
   },
 )
+
+const emit = defineEmits(['dayPointerover', 'dayPointerleave', 'getTableData'])
 
 const initialDate = ref(dayjs(props.currentDate))
 
@@ -58,6 +60,19 @@ function changeMonth(type: ManipulateType, num: number) {
   if (props.headerOption.switchMonth)
     initialDate.value = dayjs(initialDate.value.toDate()).add(num, type)
 }
+
+function dayPointerover(item: DateCell & { formatDate: string }) {
+  emit('dayPointerover', item)
+}
+function dayPointerleave(item: DateCell & { formatDate: string }) {
+  emit('dayPointerleave', item)
+}
+watch(tableData, (v) => {
+  emit('getTableData', {
+    name: unref(title.value),
+    tableData: unref(tableData.value),
+  })
+})
 </script>
 
 <template>
@@ -70,7 +85,8 @@ function changeMonth(type: ManipulateType, num: number) {
         class="flex-1"
         :table-data="tableData?.flat()"
         :current-date="currentDate"
-        :show-popover-date="showPopoverDate"
+        @dayPointerover="dayPointerover"
+        @dayPointerleave="dayPointerleave"
       />
     </div>
   </div>
