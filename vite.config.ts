@@ -7,7 +7,6 @@ import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
-import VueMacros from 'unplugin-vue-macros/vite'
 import prismjs from 'vite-plugin-prismjs'
 
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
@@ -19,21 +18,15 @@ export default defineConfig({
     },
   },
   plugins: [
-    VueMacros({
-      defineOptions: false,
-      defineModels: false,
-      plugins: {
-        vue: Vue({
-          template: {
-            compilerOptions: {
-              isCustomElement: tag => ['random-bg'].includes(tag) || tag.includes('lit-'),
-            },
-          },
-          script: {
-            propsDestructure: true,
-            defineModel: true,
-          },
-        }),
+    Vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => ['random-bg'].includes(tag) || tag.includes('lit-'),
+        },
+      },
+      script: {
+        propsDestructure: true,
+        defineModel: true,
       },
     }),
     prismjs({
