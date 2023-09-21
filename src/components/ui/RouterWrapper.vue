@@ -83,13 +83,13 @@ function closeAndToHome() {
   font-size: 16px;
   border-radius: 18px;
   color: #f0f2f8;
-  background: #944DFE;
-  box-shadow: #944DFE 0px 0px 0px 2px;
+  background: #8388d1;
+  box-shadow: #8388d1 0px 0px 0px 2px;
   transition: box-shadow 0.2s ease-out 0s;
 }
 .return-arrow:hover{
   cursor: pointer;
-  box-shadow: #944DFEb0 0px 0px 0px 5px;
+  box-shadow: #8388d1b0 0px 0px 0px 5px;
 }
 
 .bubbleCardDown{
