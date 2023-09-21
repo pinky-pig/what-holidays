@@ -8,7 +8,6 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
-import cesium from 'vite-plugin-cesium'
 import prismjs from 'vite-plugin-prismjs'
 
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
@@ -75,9 +74,6 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see uno.config.ts for config
     UnoCSS(),
-    cesium({
-      rebuildCesium: true,
-    }),
   ],
 
   // https://github.com/vitest-dev/vitest
