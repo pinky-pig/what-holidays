@@ -8,7 +8,6 @@ import CustomMapboxPopup from '~/components/ui/CustomMapboxPopup.vue'
 import ScratchyModal from '~/components/ui/ScratchyModal.vue'
 
 const store = useAreaStore()
-const router = useRouter()
 
 const hd = new Holidays()
 
@@ -154,7 +153,6 @@ function initUserPosition(map: mapboxgl.Map) {
 
       marker.getElement().addEventListener('click', (e) => {
         // 在这里执行您希望的点击事件处理逻辑
-        router.push('/area')
         // open()
       })
 
