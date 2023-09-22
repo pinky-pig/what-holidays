@@ -25,7 +25,7 @@ function closeAndToHome() {
 <template>
   <div
     :class="isOpen ? 'bubbleCardUp' : 'bubbleCardDown'"
-    class="wrapper fixed left-0 top-0 z-50 z-999 h-screen w-screen flex flex-col"
+    class="wrapper fixed left-0 top-0 z-50 z-999 h-screen w-screen flex flex-col text-black"
   >
     <div class="h-60px w-full flex-shrink-0" @click="closeAndToHome" />
     <!-- 这个 wrapper-content 主要目的是设置一个 mask ，不用即可删除 -->
