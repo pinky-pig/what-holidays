@@ -225,7 +225,7 @@ function selectedArea(item: AllAreaType) {
         class="flex flex-row items-center overflow-hidden rounded-l-30px pl-50px"
       >
         <!-- 检索 input 及 Code 跳转链接按钮 -->
-        <div ref="$input" class="pointer-events-auto relative h-50px flex flex-1 flex-row items-center">
+        <div ref="$input" class="pointer-events-auto relative h-50px flex flex-1 flex-row items-center text-black">
           <div class="searchBar relative z-98">
             <input
               v-model="searchText"
