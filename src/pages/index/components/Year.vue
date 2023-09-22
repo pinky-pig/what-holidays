@@ -115,7 +115,7 @@ watch(currentHoliday, (v) => {
       <div
         v-if="popoverItem"
         id="calendar-popover"
-        :class="popoverItem.type === 'normal' ? '' : 'border-[#944DFE02]! text-[rgb(156,163,175)]' "
+        :class="popoverItem.type === 'normal' ? 'text-black' : 'border-[#944DFE02]! text-[rgb(156,163,175)]' "
         :style="{
           top: 0,
           left: 0,
