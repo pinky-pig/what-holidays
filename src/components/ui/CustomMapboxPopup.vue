@@ -85,7 +85,8 @@ function goArea() {
 
     <div class="popup">
       <div class="mb-2 cursor-pointer underline underline-offset-6 underline-dashed hover:text-[#c4c7ff]" @click="goArea()">
-        {{ store.currentArea?.name }}
+        <!-- {{ store.currentArea?.name }} -->
+        {{ store.currentArea?.name === '中華民國' ? '中國台灣' : store.currentArea?.name }}
       </div>
       <!-- <div class="my-3 h-1px w-full border border-white border-dashed" /> -->
 

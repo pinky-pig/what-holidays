@@ -54,7 +54,8 @@ function getYearHolidays(year: number) {
           :src="store.currentArea?.flag"
           class="block h-6 w-6"
         >
-        {{ store.currentArea?.name || currentAreaCode }}
+        <!-- {{ store.currentArea?.name || currentAreaCode }} -->
+        {{ (store.currentArea?.name === '中華民國' ? '中國台灣' : store.currentArea?.name) || currentAreaCode }}
       </div>
     </template>
     <Splitpanes class="default-theme" :horizontal="isHorizontal">

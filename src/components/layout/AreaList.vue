@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useMotion } from '@vueuse/motion'
 import type { AllAreaType } from '~/store/area'
+import { CODE_URL } from '~/config/param'
 
 const store = useAreaStore()
 
@@ -237,7 +238,7 @@ function selectedArea(item: AllAreaType) {
           <!-- 打开 code 的外链 href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" -->
           <a
             class="code-tag absolute left-210px top-16px z-99 h-24px w-56px flex select-none select-none items-center justify-center rounded-8px bg-[#fed11b] -ml-15px"
-            href="https://baike.baidu.com/item/ISO%20639-1/8292914?fr=ge_ala"
+            :href="CODE_URL"
             target="_blank"
           >
             <span class="text-14px font-bold text-black underline underline-black underline-offset-4">
@@ -256,7 +257,7 @@ function selectedArea(item: AllAreaType) {
       >
         <div
           ref="$areaListBox"
-          class="area-list grid grid-auto-rows-[min-content] grid-cols-4 h-full select-none gap-4 rounded-md p-4 md:grid-cols-6 overflow-x-hidden!"
+          class="area-list grid grid-auto-rows-[min-content] grid-cols-4 h-full select-none gap-4 rounded-md p-4 text-black md:grid-cols-6 overflow-x-hidden!"
         >
           <div
             v-for="item in filterClosedAreas"
