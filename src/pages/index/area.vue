@@ -51,11 +51,23 @@ function getYearHolidays(year: number) {
     <template #title>
       <div class="flex flex-row items-center justify-start gap-10px font-bold">
         <img
+          v-if="store.currentArea?.code === 'HK' || store.currentArea?.code === 'TW' "
+          src="/flags/4x3/cn.svg"
+          class="block h-6 w-6"
+          alt=""
+        >
+        <img
           :src="store.currentArea?.flag"
           class="block h-6 w-6"
         >
         <!-- {{ store.currentArea?.name || currentAreaCode }} -->
-        {{ (store.currentArea?.name === '中華民國' ? '中國台灣' : store.currentArea?.name) || currentAreaCode }}
+        {{ (
+          store.currentArea?.code === 'TW'
+            ? '中國台灣'
+            : store.currentArea?.code === 'HK'
+              ? '中國香港'
+              : store.currentArea?.name
+        ) || currentAreaCode }}
       </div>
     </template>
     <Splitpanes class="default-theme" :horizontal="isHorizontal">

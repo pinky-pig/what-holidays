@@ -184,6 +184,11 @@ function initAreaPosition(map: mapboxgl.Map) {
       el.innerHTML = `
       <div class="hover:scale-110 flex flex-col items-center space-y-0.5 w-fit" style="max-width: 150px;">
         <div class="hover:animate-[shake_1.5s_ease-in-out_infinite] border-2 rounded border-solid px-1.5 flex items-center space-x-0.5 overflow-hidden w-fit cursor-pointer shadow-[rgba(170,166,170,0.40)] shadow-md bg-[rgba(152,208,255,0.5)] border-white py-[0.1875rem]">
+          ${
+            (area?.code === 'HK' || area?.code === 'TW')
+            ? '<img src="/flags/4x3/cn.svg" class="w-4 h-4 block" >'
+            : ''
+          }
           <img
             src="${area.flag}"
             class="w-4 h-4 block "
