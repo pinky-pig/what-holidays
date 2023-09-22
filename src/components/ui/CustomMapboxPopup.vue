@@ -216,6 +216,7 @@ function goArea() {
   backdrop-filter: blur(10px);
   max-width: 300px;
   border-radius: 30px;
+  position: relative;
   /* border:6px solid white;
   border-radius: 10px;
   overflow: hidden;

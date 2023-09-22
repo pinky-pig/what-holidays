@@ -18,7 +18,10 @@ const { width } = useWindowSize()
 
 watch(width, (v) => {
   isHorizontal.value = v <= 500
+}, {
+  immediate: true,
 })
+
 // 当前选中的节日
 const currentHoliday = ref<Holiday | null>(null)
 provide('currentHoliday', currentHoliday)

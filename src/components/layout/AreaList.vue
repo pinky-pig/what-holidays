@@ -200,7 +200,7 @@ function selectedArea(item: AllAreaType) {
   <div
     v-show="isShowPanel"
     ref="$panel"
-    class="pointer-events-none fixed flex flex-col p-4"
+    class="pointer-events-none fixed flex flex-col touch-none p-4"
     :style="{
       left: `calc(${x}px - 1rem)`,
       top: `calc(${y}px - 1rem)`,
@@ -212,13 +212,17 @@ function selectedArea(item: AllAreaType) {
       class="circle pointer-events-auto absolute z-99 h-50px w-50px flex flex-row cursor-pointer select-none items-center justify-center rounded-full"
       @click="handleExpandPanel"
     >
-      <div class="h-38px w-38px flex flex-row items-center justify-center rounded-full bg-[#944DFEc0]">
-        <div i-fluent-emoji:magnifying-glass-tilted-right />
+      <div class="h-38px w-38px flex flex-row items-center justify-center rounded-full bg-[#944DFEc0] text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor" fill-rule="evenodd" d="M12 2c-4.418 0-8 3.646-8 8.143c0 4.462 2.553 9.67 6.537 11.531a3.45 3.45 0 0 0 2.926 0C17.447 19.812 20 14.605 20 10.144C20 5.645 16.418 2 12 2Zm-3.75 8a3.75 3.75 0 1 1 6.88 2.065l.902.907a.75.75 0 0 1-1.064 1.057l-.897-.902A3.75 3.75 0 0 1 8.25 10Zm1.5 0a2.25 2.25 0 1 1 4.5 0a2.25 2.25 0 0 1-4.5 0Z" clip-rule="evenodd" />
+        </svg>
       </div>
     </div>
 
     <div class="expand-panel pointer-events-none h-full w-full overflow-hidden">
-      <div class="flex flex-row items-center overflow-hidden rounded-l-30px pl-50px">
+      <div
+        class="flex flex-row items-center overflow-hidden rounded-l-30px pl-50px"
+      >
         <!-- 检索 input 及 Code 跳转链接按钮 -->
         <div ref="$input" class="pointer-events-auto relative h-50px flex flex-1 flex-row items-center">
           <div class="searchBar relative z-98">
@@ -236,7 +240,7 @@ function selectedArea(item: AllAreaType) {
             href="https://baike.baidu.com/item/ISO%20639-1/8292914?fr=ge_ala"
             target="_blank"
           >
-            <span class="text-14px font-bold underline underline-black underline-offset-4">
+            <span class="text-14px font-bold text-black underline underline-black underline-offset-4">
               code
             </span>
           </a>
@@ -246,8 +250,14 @@ function selectedArea(item: AllAreaType) {
         <div class="circle-line" />
       </div>
       <!-- 面板 -->
-      <ScratchyBorder ref="$areaListContainer" class="bg-[#944dfe] h-420px! max-w-unset! w-478px!">
-        <div ref="$areaListBox" class="area-list grid grid-auto-rows-[min-content] grid-cols-6 h-full select-none gap-4 rounded-md p-4">
+      <ScratchyBorder
+        ref="$areaListContainer"
+        class="h-220px bg-[#944dfe] max-w-unset! w-330px! md:h-420px! md:w-478px!"
+      >
+        <div
+          ref="$areaListBox"
+          class="area-list grid grid-auto-rows-[min-content] grid-cols-4 h-full select-none gap-4 rounded-md p-4 md:grid-cols-6 overflow-x-hidden!"
+        >
           <div
             v-for="item in filterClosedAreas"
             :key="item.name"

@@ -4,16 +4,15 @@
 
 
 <h6 align='center'>
-  <a href="">在线体验</a>
+  <a href="https://holiday.mmeme.me/">在线体验</a>
 </h6>
 
-## 挂载自定义组件 DOM 到 Popup
+2023/09/22
 
-为满足组件式开发，并且支持双向绑定。
+- 适配移动端（search、area.vue）
+- search icon
+- 移动端弹窗样式
 
-- [] Lit
-- [] Vue ce.vue customElement
-- [] createApp
 
 
 ## Points
@@ -24,6 +23,15 @@
 
 <!-- ![20230901161725](https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20230901161725.png) -->
 
+
+
+- 挂载自定义组件 DOM 到 Popup
+
+为满足组件式开发，并且支持双向绑定。
+
+- [] Lit
+- [] Vue ce.vue customElement
+- [] createApp
 
 - pinia-plugin-persistedstate
 
