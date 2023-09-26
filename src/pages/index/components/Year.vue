@@ -130,7 +130,7 @@ watch(currentHoliday, (v) => {
         </div>
         <svg
           :class=" popoverItem.type === 'normal' ? '' : 'fill-[#944DFE80]!' "
-          class="absolute left-1/2 fill-#944DFE -bottom-12px -translate-1/2"
+          class="pointer-events-none absolute left-1/2 fill-#944DFE -bottom-12px -translate-1/2"
           width="11"
           height="6"
           viewBox="0 0 11 6"
