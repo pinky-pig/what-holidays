@@ -2,6 +2,7 @@
 import { useMotion } from '@vueuse/motion'
 import type { AllAreaType } from '~/store/area'
 import { CODE_URL } from '~/config/param'
+import { t } from '~/i18n'
 
 const store = useAreaStore()
 
@@ -229,8 +230,8 @@ function selectedArea(item: AllAreaType) {
           <div class="searchBar relative z-98">
             <input
               v-model="searchText"
-              placeholder="可以输入地区 CODE 检索"
-              class="searchText select-none placeholder-select-none"
+              :placeholder="t('search.placeholderText')"
+              class="searchText select-none placeholder-select-none placeholder-text-14px"
               type="text"
             >
           </div>

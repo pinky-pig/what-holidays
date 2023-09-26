@@ -43,6 +43,7 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
+        'vue-i18n',
         '@vueuse/core',
         {
           'naive-ui': [
@@ -67,6 +68,8 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see uno.config.ts for config
     UnoCSS(),
+
+    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
   ],
 
   // https://github.com/vitest-dev/vitest

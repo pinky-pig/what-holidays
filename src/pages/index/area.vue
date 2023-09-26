@@ -7,6 +7,7 @@ import RouterWrapper from '../../components/ui/RouterWrapper.vue'
 import YearCalendar from './components/Year.vue'
 import HolidayList from './components/List.vue'
 import Now from './components/Now.vue'
+import { t } from '~/i18n'
 
 import type { Holiday } from '~/types/holiday'
 
@@ -74,19 +75,19 @@ function getYearHolidays(year: number) {
       <Pane min-size="20">
         <Splitpanes class="default-theme editors-height" horizontal>
           <Pane size="30">
-            <Container title="Now">
+            <Container :title="t('areaLayout.now')">
               <Now />
             </Container>
           </Pane>
           <Pane size="70">
-            <Container :title="`Holiday : ${holidays.length}`">
+            <Container :title="`${t('areaLayout.holiday')} : ${holidays.length}`">
               <HolidayList :holidays="holidays" />
             </Container>
           </Pane>
         </Splitpanes>
       </Pane>
       <Pane size="80" min-size="40">
-        <Container title="Calendar">
+        <Container :title="t('areaLayout.calendar')">
           <YearCalendar :current-year="currentYear" :holidays="holidays" />
         </Container>
       </Pane>

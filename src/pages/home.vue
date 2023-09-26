@@ -1,14 +1,31 @@
 <script setup lang="ts">
-// const store = useAreaStore()
+import { i18n } from '~/i18n'
+
+const store = useAreaStore()
 
 const isShowLittlePanel = ref(false)
 
-// 给父盒子变形使用
+/**
+ * 给父盒子变形使用
+ */
 const route = useRoute()
 watch(() => route.fullPath, (v) => {
   setAppRootScale(v)
 })
 
+/**
+ * 当前地区是cn时，展示中文，否则展示英文
+ */
+watch(() => store.currentArea?.code, (v) => {
+  if (v?.toLowerCase() === 'cn' || v?.toLowerCase() === 'hk' || v?.toLowerCase() === 'tw' || v?.toLowerCase() === 'jp')
+    i18n.global.locale = 'cn'
+  else
+    i18n.global.locale = 'en'
+})
+
+/**
+ * 设置弹窗缩小
+ */
 onMounted(() => {
   setAppRootScale(route.fullPath)
 })

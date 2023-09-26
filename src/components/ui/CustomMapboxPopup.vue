@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Holidays from 'date-holidays'
 import dayjs from 'dayjs'
+import { t } from '~/i18n'
 import type { Holiday } from '~/types/holiday'
 
 const store = useAreaStore()
@@ -101,8 +102,8 @@ function goArea() {
         <!-- 今天是节假日吗 -->
         <div v-if="isHolidayInNow" class="flex flex-shrink-0 flex-row items-start gap-2">
           <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:beaming-face-with-smiling-eyes />
-          <div class="w-36px flex-shrink-0 leading-5">
-            今天：
+          <div class="flex-shrink-0 leading-5">
+            {{ t('nowHolidayType.today') }}
           </div>
           <div class="flex">
             {{ isHolidayInNow[0].name }}
@@ -111,14 +112,14 @@ function goArea() {
         <div v-else class="flex flex-row items-center gap-2">
           <div class="h-20px w-16px" i-fluent-emoji:loudly-crying-face />
           <p class="leading-5">
-            今天没有放假
+            {{ t('nowHolidayType.noToday') }}
           </p>
         </div>
         <!-- 这个月有节假日吗 -->
         <div v-if="holidayInMonth" class="pointer-events-auto flex flex-row cursor-pointer items-start gap-2">
           <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
-          <div class="w-36px flex-shrink-0 leading-5">
-            本月：
+          <div class="flex-shrink-0 leading-5">
+            {{ t('nowHolidayType.month') }}
           </div>
           <div class="flex flex-row flex-wrap">
             <p v-for="item in holidayInMonth" :key="item.name">
@@ -128,15 +129,17 @@ function goArea() {
         </div>
         <div v-else class="flex flex-row items-center gap-2">
           <div class="h-20px w-16px" i-fluent-emoji:face-with-spiral-eyes />
-          <div> 这个月没有节假日了 </div>
+          <div>
+            {{ t('nowHolidayType.noMonth') }}
+          </div>
         </div>
 
         <!-- 最近的下个节日 -->
         <div v-if="nextHoliday" class="flex flex-row items-start gap-2">
           <div class="h-20px w-16px flex-shrink-0" i-fluent-emoji:smiling-face-with-hearts />
 
-          <div class="w-36px flex-shrink-0 leading-5">
-            下个：
+          <div class="flex-shrink-0 leading-5">
+            {{ t('nowHolidayType.next') }}
           </div>
           <div class="flex">
             {{ nextHoliday.name }}
@@ -145,7 +148,7 @@ function goArea() {
         <div v-else class="flex flex-row items-center gap-2">
           <div class="h-20px w-16px" i-fluent-emoji:face-holding-back-tears />
           <p class="leading-5">
-            今年没有节假日了
+            {{ t('nowHolidayType.noYear') }}
           </p>
         </div>
       </div>
@@ -255,7 +258,7 @@ function goArea() {
 .scratchyBorder .frames div {
   background: url("~/assets/svg/speciesBorder.svg") repeat-x 50% 50%;
   width: 100%;
-  height: 20px;
+  height: 18px;
   position: absolute;
   left: 0;
   top: 0;
