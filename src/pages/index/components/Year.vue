@@ -14,7 +14,7 @@ withDefaults(
 )
 
 // 伪造 currentDate 遍历十二个月，渲染全年日历
-const months = Array(12)
+const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
 // 当前选中的节日
 const currentHoliday = inject('currentHoliday') as Ref<Holiday>
@@ -90,8 +90,8 @@ watch(currentHoliday, (v) => {
     @scroll="handleScroll"
   >
     <div
-      v-for="(_item, index) in months"
-      :key="index"
+      v-for="(item, index) in months"
+      :key="item"
       ref="$calendars"
     >
       <Calendar
@@ -101,7 +101,7 @@ watch(currentHoliday, (v) => {
           switchMonth: false,
         }"
         :holidays="holidays"
-        :current-date="new Date(`${currentYear}-${index + 1}-01`)"
+        :current-date="new Date(`${currentYear}-${item}-01`)"
         class="outline-3px outline-transparent outline-solid w-300px! transition-all! duration-300! ease-in-out!"
         :class="currentHolidayInMonth === (index + 1) ? 'outline-[#bbbeee]!' : 'outline-transparent'"
         @day-pointerover="dayPointerover"
