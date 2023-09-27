@@ -7,7 +7,6 @@ import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
-import prismjs from 'vite-plugin-prismjs'
 
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
@@ -28,11 +27,6 @@ export default defineConfig({
         propsDestructure: true,
         defineModel: true,
       },
-    }),
-    prismjs({
-      languages: ['css'],
-      plugins: ['copy-to-clipboard'], // 配置显示行号插件
-      css: true,
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
@@ -68,8 +62,6 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see uno.config.ts for config
     UnoCSS(),
-
-    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
   ],
 
   // https://github.com/vitest-dev/vitest
